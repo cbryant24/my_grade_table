@@ -84,9 +84,10 @@ function SGT() {
     var name = '';
     var student_course = '';
     var student_grade = null;
+    var self = this
+    this.student_id = null;
     this.student_list = [];
     $('.btn-success').on('click', ()=>{
-        debugger;
         name = $('#studentName').val()
         student_course =$('#course').val();
         student_grade = $('#studentGrade').val();
@@ -109,6 +110,7 @@ function SGT() {
         };
         this.student_list.push(this.student);
     };
+
     this.update_list_average = function() {
         this.average = null;
         for(var i = 0; i < this.student_list.length; i++) {
@@ -116,9 +118,12 @@ function SGT() {
         }
         return parseInt(this.average/this.student_list.length);
     };
+
     this.add_student_dom = function() {
         for(var i = this.student_list.length - 1; i <  this.student_list.length; i++) {
-            var table_row = $('<tr>');
+            var table_row = $('<tr>', {
+                id: this.student_id++
+            });
             var table_name = $('<td>', {
                 text: this.student_list[i].name
             });
@@ -129,16 +134,36 @@ function SGT() {
                 text: this.student_list[i].grade
             });
             var table_delete = $('<td>',{
-                html: '<btn></btn>',
-                class: 'btn btn-danger',
-                text: 'delete'
+
             });
-            $(table_row).append(table_name);
-            $(table_row).append(table_course);
-            $(table_row).append(table_grade);
-            $(table_row).append(table_delete);
-            $('.student-list').append(table_row)
+            // var vJSbutton = document.createElement('BUTTON');
+            // vJSbutton.classList.add('btn');
+            // vJSbutton.classList.add('btn-danger');
+            // vJSbutton.innerText = 'Delete';
+            var jQueryButton = $('<button>', {
+                class: "btn btn-danger",
+                text: 'Delete'
+            });
+            var delete_info = jQueryButton[0];
+            delete_info.student = this.student_list[i];
+            // var vanillaJSButton = jQueryButton[0];
+            // vanillaJSButton.student = this.student_list[i];
+            // table_delete.append(vanillaJSButton);
+            table_row.append(table_name);
+            table_row.append(table_course);
+            table_row.append(table_grade);
+            table_row.append(table_delete);
+            table_delete.append(jQueryButton);
+            $('.student-list').append(table_row);
         }
+        $('tr').on('click','.btn-danger',function() {
+            debugger
+            // console.log($(this).parent('tr').attr('id'))
+            // console.log(this.student);
+            self.student_list.splice(self.student_list.indexOf($(this.student),1));
+            $(this).parent('tr').remove();
+
+        });
     }
 }
 
