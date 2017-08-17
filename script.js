@@ -96,14 +96,34 @@ function SGT() {
         this.add_student_dom();
     });
 
-    $('.btn-default').on('click', function() {
+    $('.cancel').on('click', function() {
         $('#studentName').val('');
         $('#course').val('');
         $('#studentGrade').val('');
     });
 
+    $('.server').on('click', function(){
+        var key = 'api_key: 5ukJMiUivX'
+        $.ajax({
+            url: 'http://s-apis.learningfuze.com/sgt/get',
+            data: {
+                api_key: '5ukJMiUivX'
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function(response) {
+                debugger;
+                for (var i = 0; i < response.data.length; i++) {
+                    self.student_list.push(response.data[i]);
+                    self.add_student_dom();
+                }
+            }
+        })
+    })
+
     this.add_student = ()=>{
         this.student = {
+            id: this.student_id,
             name: name,
             course: student_course,
             grade: student_grade
@@ -161,7 +181,7 @@ function SGT() {
             // console.log($(this).parent('tr').attr('id'))
             // console.log(this.student);
             self.student_list.splice(self.student_list.indexOf($(this.student),1));
-            $(this).parent('tr').remove();
+            $(this).parents('tr').remove();
 
         });
     }
