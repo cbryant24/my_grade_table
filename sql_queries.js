@@ -1,29 +1,49 @@
+// const mysql = require('mysql');
+// const my_creds = require('./mysqlCredentials');
+//
+// const connection = mysql.createConnection(my_creds);
+//
+// var data = 'still a string';
+// var select = "SELECT * FROM nodejs";
+//
+// connection.connect(function(err) {
+//     if (err) throw err;
+//     connection.query(select, handle_query);
+//
+//     function handle_query(err, rows, fields) {
+//         if(err) throw err;
+//         data = JSON.stringify(rows);
+//         console.log('here is the data', data)
+//     }
+// });
+//
+// console.log(data);
+//
+// module.exports = data;
+
+const express = require('express');
 const mysql = require('mysql');
-const my_creds = require('./mysqlCredentials');
+const credentials = require('./mysqlCredentials');
 
-const connection = mysql.createConnection(my_creds);
+const router = express.Router();
 
-var data = 'still a string';
 
-connection.connect(function(err) {
-    if (err) throw err
-    connection.query("SELECT * FROM nodejs", handle_query)
+router.get('/', function(req, res) {
+    const connection = mysql.createConnection(credentials);
+    var data = 'still a string';
+    var select = "SELECT * FROM nodejs";
 
-    function handle_query(err, rows, fields) {
-        if(err) throw err
-        console.log(JSON.stringify(rows));
-        data = JSON.stringify(rows)
-        console.log(data)
-    }
+    connection.connect(function(err) {
+        if (err) throw err;
+        connection.query(select, handle_query);
+
+        function handle_query(err, rows, fields) {
+            if(err) throw err;
+            data = JSON.stringify(rows);
+            console.log('here is the data', data)
+        }
+    });
 });
 
-console.log(data);
-// handle_query(err, rows, fields) {
-//     if (err) throw err
-//     return rows
-// };
-//
-// connection.query("SELECT * FROM nodejs", handle_query);
 
-
-module.exports = data;
+module.exports = router;
