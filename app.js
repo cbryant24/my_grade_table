@@ -11,13 +11,17 @@ app.use('/assets', function(req, res, next){
     next();
 });
 
+app.use('/', select_routes);
+
 // app.get('/', function(req, res) {
 //     console.log(select_query)
 //     res.send(select_query)
 //     // res.end(JSON.stringify(select_query()));
 // });
 
-app.get('/', select_routes);
+app.get('/', function(req, res) {
+    res.end( )
+});
 
 
 
