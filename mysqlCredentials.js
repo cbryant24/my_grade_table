@@ -3,6 +3,7 @@ var credentials = {
     password: 'nov121946',
     database: 'nodejs_test',
     host: 'localhost',
+    dialect: 'mysql',
     port: 3306
 };
 
