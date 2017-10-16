@@ -1,0 +1,13 @@
+.side-bar {
+    background-color: lightgray;
+    height: 92vh;
+}
+
+.nav-bar {
+    background: black;
+    color: white;
+}
+
+.nav-bar li:hover {
+    color: red;
+}
