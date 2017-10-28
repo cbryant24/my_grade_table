@@ -6,7 +6,6 @@ import { get_students } from '../actions'
 class Students extends Component {
     componentWillMount() {
         this.props.get_students()
-        console.log(this.props)
     }
 
     render() {

@@ -2,11 +2,14 @@ const express = require('express');
 
 
 const students = require('./students');
+const instructors = require('./instructors')
+const history = require('./history')
 
 const router = express.Router();
 
-router.use('/students', students)
-
+router.use('/instructors', instructors);
+router.use('/api/students', students);
+router.use('/api/get_activity', history)
 
 
 

@@ -7,7 +7,10 @@ $(document).ready(function(){
     $('#course').val('math');
     sgt.load_students();
     $('.signin').on('click', () => {
-        location.href = "/signin/facebook";
+        location.href="/signin/facebook";
+    })
+    $('.signout').on('click', () => {
+        location.href='/signout' 
     })
 })
 

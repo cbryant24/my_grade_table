@@ -1,16 +1,24 @@
+import types from '../actions/types'
+
 const DEFAULT_STATE = { 
-    auth: null,
-    all_students: []
+    auth: false,
+    all_students: [],
+    user_activity: []
  };
 
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
-        case action.GET_STUDENTS:
+        case types.GET_STUDENTS:
             return {
                 ...state,
                 all_students: action.payload
             }
-        case action.AUTH:
+        case types.GET_ACTIVITY:
+            return {
+                ...state,
+                user_activity: action.payload
+            }
+        case types.AUTH:
             return {
                 ...state,
                 auth: action.payload

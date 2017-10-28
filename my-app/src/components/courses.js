@@ -23,7 +23,6 @@ class Courses extends Component {
 
     handle_select(e) {
         e.preventDefault()
-        console.log('this is the props from the handle area', this.props)
     }
 
     render() {

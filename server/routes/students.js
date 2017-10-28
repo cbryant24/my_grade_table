@@ -1,23 +1,51 @@
 const models = require('../models');
 const express = require('express');
-// const test = require('./test');
+const bodyParser = require('body-parser');
 
 const router = express.Router();
 let Students = models.students;
+let User_History = models.history;
 let Grades = models.grades;
 debugger
-router.get('/', function(req, res){
-    Students.findAll().then( (table) => {
-        let all_studs = {
-            success: true,
-            data: table
+
+router.use(bodyParser.json())
+
+
+router.post('/add', function(req, res){
+    console.log('this is the req obj', req.body)
+    const resp = {
+        student: {
+            created: null,
+            student: null
+        },
+        history: {
+            created: null,
+            history: null
         }
-        console.log(typeof JSON.stringify(table));
-        res.status(200)        
-        res.send(all_studs)
-    } )
-    console.log('hello everyone from students');
-    // res.send(JSON.stringify(table));
+    }
+    Students
+    .findOrCreate({where: {
+        first_name: req.body.vals.first_name,
+        last_name: req.body.vals.last_name,
+        student_id: req.body.vals.student_id,
+        fb_id: req.body.fb_id
+        }
+    })
+    .spread( (student, created) => {
+        resp.student.created = created;
+        resp.student.student = student;
+    })
+
+    User_History
+    .findOrCreate({ where: {
+        fb_id: req.body.fb_id,
+        transaction: `Added student ${req.body.vals.first_name} ${req.body.vals.last_name}`
+    }})
+    .spread( (history, created) => {
+        resp.history.created = created;
+        resp.history.history = history
+        res.status(200).send(resp)
+    })
 })
 
 

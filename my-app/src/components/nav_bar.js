@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
-import FaBook from 'react-icons/lib/fa/book'
+import { Link } from 'react-router-dom';
+// import FaBook from 'react-icons/lib/fa/book';
+import { sign_in, sign_out } from '../actions';
 
 class Nav_Bar extends Component {
+    
+    handle_logout() {
+        this.props.sign_out()
+    }
+
     render() {
         return(
             <div className='container nav-bar'>
@@ -13,8 +19,8 @@ class Nav_Bar extends Component {
                         <li className='nav-item'>
                             <Link className='nav-link' to='/'>Home</Link>
                         </li>
-                        <li>
-                            <Link className='nav-link' to='/login'>Login</Link>
+                        <li onClick={ () => this.handle_logout()}>
+                            Logout
                         </li>
                     </ul>
                 </div>
@@ -24,4 +30,6 @@ class Nav_Bar extends Component {
     }
 }
 
-export default Nav_Bar;
+
+
+export default connect(null, {sign_in, sign_out})(Nav_Bar);

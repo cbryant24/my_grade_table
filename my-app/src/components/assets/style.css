@@ -11,3 +11,7 @@
 .nav-bar li:hover {
     color: red;
 }
+
+.login {
+    height: 100vh;
+}
