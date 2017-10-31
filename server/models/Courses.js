@@ -5,8 +5,8 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        name: dataTypes.STRING,
-        instructor_id: dataTypes.INTEGER
+        fb_id: dataTypes.BIGINT(20),
+        course_name: dataTypes.STRING,
     }, {
         timestamps: false,
         freezeTableName: true

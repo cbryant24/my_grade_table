@@ -13,7 +13,6 @@ router.post('/', (req, res) => {
         where: { fb_id: req.body.fb_id},
         limit: 10
     }).then( result => {
-        console.log('this is the history respone', result.rows)
         res.status(200).send(result.rows)
     })
 })

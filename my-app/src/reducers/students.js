@@ -3,7 +3,9 @@ import types from '../actions/types'
 const DEFAULT_STATE = { 
     auth: false,
     all_students: [],
-    user_activity: []
+    user_activity: [],
+    user_courses: [],
+    selected_course: ''
  };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -17,6 +19,16 @@ export default (state = DEFAULT_STATE, action) => {
             return {
                 ...state,
                 user_activity: action.payload
+            }
+        case types.GET_COURSES:
+            return {
+                ...state,
+                user_courses: action.payload
+            }
+        case types.SEARCH_COURSES: 
+            return {
+                ...state,
+                selected_course: action.payload
             }
         case types.AUTH:
             return {

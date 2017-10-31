@@ -11,6 +11,8 @@ import Your_Students from './your_students';
 import Login from './login';
 import Add_Student_Form from './add_student_form';
 import Courses from './courses';
+import Your_Courses from './your_courses';
+import Add_Grade_Form from './add_grade_form';
 
 import { sign_in, get_students } from '../actions';
 
@@ -45,7 +47,12 @@ class App extends Component {
                 <Route exact path='/' component={Students}/>
                 <Route path='/add_student' component={Add_Student_Form} />
                 <Route path='/add_student' component={Your_Students} />
+
                 <Route path='/courses' component={Courses}/>
+                <Route path='/courses' component={Your_Courses}/>
+
+                <Route path='/grades' component={Add_Grade_Form}/>
+                <Route exact path='/grades' component={Students}/>
               </div>
           </div>
           </div>
