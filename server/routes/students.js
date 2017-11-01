@@ -11,13 +11,11 @@ debugger
 router.use(bodyParser.json())
 
 router.post('/', (req, res) => {
-    console.log('this is the req body fb id', req.body.fb_id)
     Students
     .findAll({ where: {
         fb_id: req.body.fb_id
     }})
     .then( students => {
-        console.log('these are the students from the db', students)
         res.send(students);
     })
 });

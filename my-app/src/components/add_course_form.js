@@ -32,6 +32,7 @@ class Add_Course extends Component {
             <div>
                 <form onSubmit={ handleSubmit( (vals) => this.onSubmit(vals) )}>
                     <Field name='course' component={this.render_input} label='Add Course' type='text'></Field>
+                    <Field name='assignment' component={this.render_input} label='Add Assignment' type='text'></Field>                    
                     <button className='btn btn-outline-success'>Submit</button>
                 </form>
             </div>

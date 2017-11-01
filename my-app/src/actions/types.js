@@ -3,5 +3,7 @@ export default {
     AUTH: 'auth', 
     GET_ACTIVITY: 'get_activity',
     SEARCH_COURSES: 'search_courses',
-    GET_COURSES: 'get_courses'
+    GET_COURSES: 'get_courses',
+    GET_ASSIGNMENTS: 'get_assignments',
+    GET_GRADES: 'get_grades'
 }

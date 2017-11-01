@@ -5,7 +5,9 @@ const DEFAULT_STATE = {
     all_students: [],
     user_activity: [],
     user_courses: [],
-    selected_course: ''
+    user_assignments: [],
+    selected_course: '',
+    student_grades: []
  };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -29,6 +31,16 @@ export default (state = DEFAULT_STATE, action) => {
             return {
                 ...state,
                 selected_course: action.payload
+            }
+        case types.GET_ASSIGNMENTS:
+            return {
+                ...state,
+                user_assignments: action.payload
+            }
+        case types.GET_GRADES:
+            return {
+                ...state,
+                student_grades: action.payload
             }
         case types.AUTH:
             return {

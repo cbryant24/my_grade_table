@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { get_students } from '../actions'
+import { get_students, get_grades } from '../actions'
 
 
 class Students extends Component {
     componentWillMount() {
-        // this.props.get_students()
+        this.props.get_grades(this.props.auth.fb_id)
     }
 
     render() {
+        debugger
         return (
             <h1>
                 I'm the Home Students
@@ -19,8 +20,9 @@ class Students extends Component {
 
 function mapStateToProps(state) {
     return ({
-        students: state.students.all_students
+        student_grades: state.students.student_grades,
+        auth: state.students.auth
     })
 }
 
-export default connect(mapStateToProps, { get_students })(Students);
+export default connect(mapStateToProps, { get_students, get_grades })(Students);

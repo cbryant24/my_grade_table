@@ -68,3 +68,25 @@ export function search_courses(fb_id, course) {
         })
     }
 }
+
+export function get_assignments(course_id) {
+    return dispatch => {
+        axios.post('/api/assignments', {course_id}).then( res => {
+            dispatch({
+                type: types.GET_ASSIGNMENTS,
+                payload: res.data
+            })
+        })
+    }
+}
+
+export function get_grades(fb_id) {
+    return dispatch => {
+        axios.post('/api/grades', {fb_id}).then( res => {
+            dispatch({
+                type: types.GET_GRADES,
+                payload: res.data
+            })
+        })
+    }
+}

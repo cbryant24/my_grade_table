@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         student_id: DataTypes.BIGINT,
         course_id: DataTypes.BIGINT,
         grade: DataTypes.INTEGER,
-        description: DataTypes.STRING
+        assignment_id: DataTypes.STRING
     }, 
     {
         timestamps: false,
