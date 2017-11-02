@@ -13,6 +13,7 @@ const DEFAULT_STATE = {
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
         case types.GET_STUDENTS:
+        case types.UPDATE_STUDENT:
             return {
                 ...state,
                 all_students: action.payload

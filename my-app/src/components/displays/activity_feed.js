@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { get_activity } from '../actions';
+import { get_activity } from '../../actions';
 import { connect } from 'react-redux';
 
 
@@ -23,7 +23,7 @@ class Activity_Feed extends Component {
     render() {
         const { pathname } = this.props.location
         return (
-            <div className={`col-${pathname === '/' ? '12':'6'}`}>
+            <div className={`col s${pathname === '/' || '/update_student' ? '12':'6'}`}>
                 <h1>Activity Feed - Bottom</h1>
                 <ul>
                     {this.render_activity()}

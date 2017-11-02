@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { get_students, get_grades } from '../actions'
+import { get_students, get_grades } from '../../actions'
 
 
 class Students extends Component {

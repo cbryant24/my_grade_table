@@ -90,3 +90,14 @@ export function get_grades(fb_id) {
         })
     }
 }
+
+export function update_student_record(update_data) {
+    return dispatch => {
+        axios.put(`/api/students/update`, {update_data}).then( res => {
+            dispatch({
+                type: types.UPDATE_STUDENT,
+                payload: res.data.students
+            })
+        })
+    }
+}

@@ -57,6 +57,26 @@ router.post('/add', (req, res) => {
     })
 })
 
+router.put('/update', (req, res) => {
+    console.log('this is the req body from put update', req.body)
+    Students
+    .update( 
+        {first_name: req.body.update_data.update_first_name,
+        last_name: req.body.update_data.update_last_name},
+        {where: {
+            id: req.body.update_data.id
+        }})
+    .spread( (affectedCount, affectedRows) => {
+        Students
+        .findAll({ where: {
+            fb_id: req.body.update_data.fb_id
+        }})
+        .then( students => {
+            res.status(200).send({affectedCount, affectedRows, students})
+        })
+    })
+})
+
 
 
 module.exports = router;

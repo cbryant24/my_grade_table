@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Add_Course from './add_course_form';
-import { get_courses, search_courses } from '../actions';
+import Add_Course from '../forms/add_course_form';
+import { get_courses, search_courses } from '../../actions';
 import { connect } from 'react-redux';
 
 
@@ -35,7 +35,7 @@ class Courses extends Component {
         const { handleSubmit } = this.props
         debugger
         return (
-            <div className='col-6'>
+            <div className='col s6'>
                 <form onSubmit={ handleSubmit( (vals) => this.handle_select(vals) )}>
                     <Field name="course" component={ (input) => this.render_select(input)} label='Courses'></Field>
                     <button className='btn btn-outline-primary'>Select Course</button>

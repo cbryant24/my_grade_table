@@ -3,17 +3,9 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import { render_input } from './helpers'
+
 class Add_Student extends Component {
-    
-    render_input({input, label, value, meta: {submitFailed, pristine, active }}) {
-        return (
-            <div className='form-group'>
-                <label className='col-form-label'>{label}</label>
-                <input {...input} className='form-control'/>
-                
-            </div>
-        )
-    }
 
     onSubmit(vals) {
         const user_vals = {
@@ -30,11 +22,11 @@ class Add_Student extends Component {
     render() {
         const { handleSubmit } = this.props
         return (
-            <div className='col-6'>
+            <div className='col s6'>
                 <form onSubmit={ handleSubmit( (vals) => this.onSubmit(vals) )}>
-                    <Field name='first_name' component={this.render_input} label='First Name' type='text'></Field>
-                    <Field name='last_name' component={this.render_input} label='Last Name' type='text'></Field>
-                    <Field name='student_id' component={this.render_input} label='Student ID' type='text'></Field>
+                    <Field name='first_name' component={render_input} label='First Name' type='text'></Field>
+                    <Field name='last_name' component={render_input} label='Last Name' type='text'></Field>
+                    <Field name='student_id' component={render_input} label='Student ID' type='text'></Field>
                     <button className='btn btn-outline-success'>Submit</button>
                 </form>
             </div>

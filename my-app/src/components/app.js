@@ -3,16 +3,20 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Students from './students';
-import Activity_Feed from './activity_feed';
 import Nav_Bar from './nav_bar';
 import Side_Bar from './side_bar';
-import Your_Students from './your_students';
 import Login from './login';
-import Add_Student_Form from './add_student_form';
-import Courses from './courses';
-import Your_Courses from './your_courses';
-import Add_Grade_Form from './add_grade_form';
+
+import Courses from './displays/courses';
+import Your_Courses from './displays/your_courses';
+import Your_Students from './displays/your_students';
+import Students from './displays/students';
+import Activity_Feed from './displays/activity_feed';
+import Delete_Update_Students from './displays/delete_update_student'
+
+import Add_Grade_Form from './forms/add_grade_form';
+import Add_Student_Form from './forms/add_student_form';
+
 
 import { sign_in, get_students } from '../actions';
 
@@ -38,10 +42,10 @@ class App extends Component {
             <Route path='/' component={Nav_Bar}/>
           </div>
           <div className='row'>
-            <div className='col-2 side-bar'>
+            <div className='col s2 side-bar'>
               <Route path='/' component={Side_Bar}/>
             </div>
-            <div className='col-10'>
+            <div className='col s10'>
               <div className='row'>
                 <Route path='/' component={Activity_Feed}/>
                 <Route exact path='/' component={Students}/>
@@ -53,6 +57,8 @@ class App extends Component {
 
                 <Route path='/grades' component={Add_Grade_Form}/>
                 <Route exact path='/grades' component={Students}/>
+
+                <Route path='/update_student' component={Delete_Update_Students}/>
               </div>
           </div>
           </div>

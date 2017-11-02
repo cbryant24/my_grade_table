@@ -5,5 +5,6 @@ export default {
     SEARCH_COURSES: 'search_courses',
     GET_COURSES: 'get_courses',
     GET_ASSIGNMENTS: 'get_assignments',
-    GET_GRADES: 'get_grades'
+    GET_GRADES: 'get_grades',
+    UPDATE_STUDENT: 'update_student'
 }

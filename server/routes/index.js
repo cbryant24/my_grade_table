@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 const students = require('./students');
 const instructors = require('./instructors');
 const history = require('./history');
@@ -15,7 +14,7 @@ router.use('/api/students', students);
 router.use('/api/get_activity', history);
 router.use('/api/courses', courses);
 router.use('/api/grades', grades);
-router.use('/api/assignments', assignments)
+router.use('/api/assignments', assignments);
 
 
 

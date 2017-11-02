@@ -22,7 +22,7 @@ router.post('/add', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    sequelize.query(`SELECT students.first_name, students.last_name, grades.grade, courses.course_name, assignments.assignment_name FROM \`students\` JOIN \`grades\` ON students.id = grades.student_id JOIN \`courses\` ON courses.id = grades.course_id JOIN \`assignments\` ON assignments.id = grades.assignment_id WHERE students.fb_id = 309974059478128`,
+    sequelize.query(`SELECT students.first_name, students.last_name, grades.grade, courses.course_name, assignments.assignment_name FROM \`students\` JOIN \`grades\` ON students.id = grades.student_id JOIN \`courses\` ON courses.id = grades.course_id JOIN \`assignments\` ON assignments.id = grades.assignment_id WHERE students.fb_id = ${req.body.fb_id}`,
     { type: sequelize.QueryTypes.SELECT}).then( (student_grades) => {
         res.status(200).send(student_grades)
     })

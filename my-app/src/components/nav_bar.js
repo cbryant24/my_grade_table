@@ -12,15 +12,15 @@ class Nav_Bar extends Component {
 
     render() {
         return(
-            <div className='container nav-bar'>
+            <div className='nav-bar'>
                 <div className='row'>
-                <h2 className='col-8'>My Students Grade</h2>
-                    <ul className="nav col-4">
+                    <h2 className='col s8'>My Students Grade</h2>
+                    <ul className="nav col s4">
                         <li className='nav-item'>
                             <Link className='nav-link' to='/'>Home</Link>
                         </li>
                         <li onClick={ () => this.handle_logout()}>
-                            Logout
+                        Logout
                         </li>
                     </ul>
                 </div>
