@@ -9,7 +9,6 @@ class Students extends Component {
     }
 
     render() {
-        debugger
         return (
             <h1>
                 I'm the Home Students

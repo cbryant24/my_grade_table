@@ -4,7 +4,6 @@ import axios from 'axios';
 export function get_students(fb_id) {
     return dispatch => {
         axios.post('/api/students', { fb_id }).then( res => {
-            console.log('this is the res from the students call', res)
             dispatch({
                 type: types.GET_STUDENTS,
                 payload: res.data
@@ -16,7 +15,6 @@ export function get_students(fb_id) {
 export function sign_in() {
     return dispatch => {
         axios.get('/api/user_info').then( (res) => {
-            console.log('this is the signin data', res.data)
             dispatch({
                 type: types.AUTH,
                 payload: res.data
@@ -88,6 +86,13 @@ export function get_grades(fb_id) {
                 payload: res.data
             })
         })
+    }
+}
+
+export function update_selection(data) {
+    return {
+        type: types.SELECT_DATA,
+        payload: data
     }
 }
 

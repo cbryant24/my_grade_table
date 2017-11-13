@@ -9,11 +9,12 @@ router.use(bodyParser.json());
 
 router.post('/', (req, res) => {
     User_History
-    .findAndCountAll({
+    .findAll({
         where: { fb_id: req.body.fb_id},
-        limit: 10
+        limit: 10,
+        order: [['id', 'DESC']]
     }).then( result => {
-        res.status(200).send(result.rows)
+        res.status(200).send(result)
     })
 })
 

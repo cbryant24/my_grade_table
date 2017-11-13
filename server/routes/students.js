@@ -6,7 +6,6 @@ const router = express.Router();
 let Students = models.students;
 let User_History = models.history;
 let Grades = models.grades;
-debugger
 
 router.use(bodyParser.json())
 
@@ -16,6 +15,8 @@ router.post('/', (req, res) => {
         fb_id: req.body.fb_id
     }})
     .then( students => {
+        students.forEach( item => item.students.type = 'student')
+        console.log('this is the students im sending the front', students[0])        
         res.send(students);
     })
 });
@@ -58,7 +59,6 @@ router.post('/add', (req, res) => {
 })
 
 router.put('/update', (req, res) => {
-    console.log('this is the req body from put update', req.body)
     Students
     .update( 
         {first_name: req.body.update_data.update_first_name,

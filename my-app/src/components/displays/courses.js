@@ -33,9 +33,8 @@ class Courses extends Component {
 
     render() {
         const { handleSubmit } = this.props
-        debugger
         return (
-            <div className='col s6'>
+            <div className='col-6'>
                 <form onSubmit={ handleSubmit( (vals) => this.handle_select(vals) )}>
                     <Field name="course" component={ (input) => this.render_select(input)} label='Courses'></Field>
                     <button className='btn btn-outline-primary'>Select Course</button>

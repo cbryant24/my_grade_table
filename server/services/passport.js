@@ -31,7 +31,6 @@ passport.use(
       name: profile.displayName
     }}).spread( (user, created) => {
       if(created === false) {
-        console.log('This is the user who has already been created', user)
       }
       done(null, user)
     })

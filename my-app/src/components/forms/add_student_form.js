@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { get_activity } from '../../actions'
 
 import { render_input } from './helpers'
 
@@ -15,14 +16,16 @@ class Add_Student extends Component {
         console.log('these be the vals from student form', user_vals)
 
         axios.post('/api/students/add', user_vals).then( res => {
-            console.log('this is the response from the students post', res)
+            this.props.get_activity(this.props.auth.fb_id)
         })
+        this.props.reset();
     }
 
     render() {
         const { handleSubmit } = this.props
+        debugger
         return (
-            <div className='col s6'>
+            <div className='col-6'>
                 <form onSubmit={ handleSubmit( (vals) => this.onSubmit(vals) )}>
                     <Field name='first_name' component={render_input} label='First Name' type='text'></Field>
                     <Field name='last_name' component={render_input} label='Last Name' type='text'></Field>
@@ -36,7 +39,8 @@ class Add_Student extends Component {
 
 function mapStateToProps(state) {
     return {
-        auth: state.students.auth
+        auth: state.students.auth,
+        selected_data: state.students.selected_data
     }
 }
 
@@ -46,4 +50,4 @@ Add_Student = reduxForm({
 })(Add_Student);
 
 
-export default connect(mapStateToProps)(Add_Student);
+export default connect(mapStateToProps, { get_activity })(Add_Student);

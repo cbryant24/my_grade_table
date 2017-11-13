@@ -9,13 +9,14 @@ import Login from './login';
 
 import Courses from './displays/courses';
 import Your_Courses from './displays/your_courses';
-import Your_Students from './displays/your_students';
+import Your_Students from './displays/display_table';
 import Students from './displays/students';
 import Activity_Feed from './displays/activity_feed';
 import Delete_Update_Students from './displays/delete_update_student'
 
 import Add_Grade_Form from './forms/add_grade_form';
 import Add_Student_Form from './forms/add_student_form';
+import Table_Form from './forms/table_form'
 
 
 import { sign_in, get_students } from '../actions';
@@ -37,30 +38,32 @@ class App extends Component {
     }
 
     return (
-        <div className='container'>
+        <div>
           <div className='row'>
             <Route path='/' component={Nav_Bar}/>
           </div>
           <div className='row'>
-            <div className='col s2 side-bar'>
+            <div className='col-3 side-bar'>
               <Route path='/' component={Side_Bar}/>
             </div>
-            <div className='col s10'>
-              <div className='row'>
-                <Route path='/' component={Activity_Feed}/>
-                <Route exact path='/' component={Students}/>
-                <Route path='/add_student' component={Add_Student_Form} />
-                <Route path='/add_student' component={Your_Students} />
+              <div className='col-9 main-background'>
+                <div className='row'>
+                  <Route path='/' component={Activity_Feed}/>
+                  <Route path='/add_student' component={Table_Form} />
+                  <Route path='/grades' component={Add_Grade_Form}/>
+                </div>
+                  <Route exact path='/' component={Students}/>
+                  
+                  <Route path='/add_student' component={Your_Students} />
 
-                <Route path='/courses' component={Courses}/>
-                <Route path='/courses' component={Your_Courses}/>
+                  <Route path='/courses' component={Courses}/>
+                  <Route path='/courses' component={Your_Courses}/>
 
-                <Route path='/grades' component={Add_Grade_Form}/>
-                <Route exact path='/grades' component={Students}/>
+                  
+                  <Route exact path='/grades' component={Students}/>
 
-                <Route path='/update_student' component={Delete_Update_Students}/>
-              </div>
-          </div>
+                  <Route path='/update_student' component={Delete_Update_Students}/>
+            </div>
           </div>
         </div>
     );

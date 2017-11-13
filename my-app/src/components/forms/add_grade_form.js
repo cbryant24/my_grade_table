@@ -14,7 +14,6 @@ class Add_Grade extends Component {
     }
     
     componentWillReceiveProps(nextProps) {
-        debugger
         if(this.props.course !== nextProps.course) {
             this.props.get_assignments(nextProps.course)
         }
@@ -27,14 +26,13 @@ class Add_Grade extends Component {
     }
 
     render() {
-        debugger
         const { handleSubmit, courses, students, assignments } = this.props
         return (
-            <div className='col s6'>
+            <div className=''>
                 <form onSubmit={ handleSubmit( (vals) => this.onSubmit(vals) )}>
-                    <Field name='courses' component={(input) => render_select(input, courses)} label='Course' type='select'></Field>
-                    <Field name='students' component={(input) =>  render_select(input, students)} label='Student' type='select'></Field>
-                    <Field name='assignments' component={(input) =>  render_select(input, assignments)} label='Assignment' type='select'></Field>
+                    <Field name='courses' component={(input) => render_select(input, {type: 'courses', vals: courses})} label='Course' ></Field>
+                    <Field name='students' component={(input) =>  render_select(input, {type: 'students', vals: students})} label='Student' type='select'></Field>
+                    <Field name='assignments' component={(input) =>  render_select(input, {type: 'assignments', vals: assignments})} label='Assignment' type='select'></Field>
                     <Field name='grade' component={render_input} label='Grade' type='number'></Field>
                     <button className='btn btn-outline-success'>Submit</button>
                 </form>

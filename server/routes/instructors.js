@@ -5,8 +5,6 @@ const express = require('express');
 const router = express.Router();
 let Instructors = models.users;
 
-debugger
-
 router.get('/', function(req, res){
     Instructors.findAll().then( (table) => {
         let instructors = {

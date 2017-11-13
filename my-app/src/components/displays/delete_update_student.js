@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { get_students } from '../../actions';
+import { get_students } from '../../actions'
 import { connect } from 'react-redux';
-import Update_Student_Form from '../forms/update_student_form';
+// import Update_Student_Form from '../forms/update_student_form';
 
 
 class Update_Delete_Student extends Component {
@@ -32,7 +32,6 @@ class Update_Delete_Student extends Component {
     }
 
     load_student(vals) {
-        console.log('hello world')
         this.setState({
             student_id: vals.id,
             student_first_name: vals.first_name,
@@ -41,10 +40,9 @@ class Update_Delete_Student extends Component {
     }
 
     render() {
-        console.log('these are the props and im waiting', this.props)
         return (
             <div className='row'>
-                <table className='col s6'>
+                <table className='col-6'>
                     <thead>
                         <tr>
                             <th>First Name</th>
@@ -57,7 +55,7 @@ class Update_Delete_Student extends Component {
                     </tbody>
                 </table>
                 <div className='add-student-form'>
-                    <Update_Student_Form fb_id={this.props.auth.fb_id} user_selection={this.state}/>
+                    {/* <Update_Student_Form fb_id={this.props.auth.fb_id} user_selection={this.state}/> */}
                 </div>
             </div>
             

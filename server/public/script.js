@@ -48,7 +48,6 @@ function SGT() {
 
     $('.modal-footer').on('click', 'button',function(){
         $('#myModal .modal-body').empty();
-        debugger
         $('.btn-danger span').removeClass('fa fa-circle-o-notch fa-spin');
     });
     this.add_student = ()=>{
@@ -109,7 +108,6 @@ function SGT() {
             var $span_add = $('<span>', {
                 class: "fa fa-circle-o-notch fa-spin",
             });
-            debugger;
             $(this).append($span_add);
             var the_data = {
                 api_key: '5ukJMiUivX',
@@ -122,7 +120,6 @@ function SGT() {
                 dataType: 'json',
                 success: (function(btn){return function(response) {
                     if(response.success === true) {
-                        console.log('success!');
                         sgt.student_list.splice(sgt.student_list.indexOf($(sgt.student),1));
                         $(btn).parents('tr').remove();
                     } else {
@@ -172,7 +169,6 @@ function SGT() {
                 // }
             }, 
             error: function(response) {
-                debugger
                 console.log(response)
             }
         })
