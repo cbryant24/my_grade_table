@@ -25,6 +25,7 @@ router.post('/', (req, res) => {
 
 
 router.post('/add', (req, res) => {
+    console.log('this is the request body from update', req.body)    
     const resp = {
         student: {
             created: null,
@@ -46,39 +47,18 @@ router.post('/add', (req, res) => {
     .spread( (student, created) => {
         resp.student.created = created;
         resp.student.student = student;
-    })
 
-    User_History
-    .findOrCreate({ where: {
-        fb_id: req.body.fb_id,
-        transaction: `Added student ${req.body.vals.first_name} ${req.body.vals.last_name}`
-    }})
-    .spread( (history, created) => {
-        resp.history.created = created;
-        resp.history.history = history
-        res.status(200).send(resp)
-    })
-})
-
-router.put('/update', (req, res) => {
-    Students
-    .update( 
-        {first_name: req.body.update_data.update_first_name,
-        last_name: req.body.update_data.update_last_name},
-        {where: {
-            id: req.body.update_data.id
+        User_History
+        .findOrCreate({ where: {
+            fb_id: req.body.fb_id,
+            transaction: `Added student ${req.body.vals.first_name} ${req.body.vals.last_name}`
         }})
-    .spread( (affectedCount, affectedRows) => {
-        Students
-        .findAll({ where: {
-            fb_id: req.body.update_data.fb_id
-        }})
-        .then( students => {
-            res.status(200).send({affectedCount, affectedRows, students})
+        .spread( (history, created) => {
+            resp.history.created = created;
+            resp.history.history = history
+            res.status(200).send(student)
         })
     })
 })
-
-
 
 module.exports = router;

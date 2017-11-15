@@ -9,4 +9,5 @@ export default {
     SELECT_DATA: 'select_data',
     CLEAR_ASSIGNMENTS: 'clear_assignments',
     GET_COURSES_STUDENTS: 'get_courses_students',
+    GET_TABLE_ASSIGNMENTS: 'get_table_assignments'
 }

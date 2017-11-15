@@ -67,10 +67,21 @@ export function get_assignments(course_id) {
     }
 }
 
+export function get_table_assignments(fb_id) {
+    return dispatch => {
+        axios.post('/api/assignments/all', {fb_id}).then( res => {
+            dispatch({
+                type: types.GET_TABLE_ASSIGNMENTS,
+                payload: {type: 'table_assignments', data: res.data}
+            })
+        })
+    }
+}
+
 export function clear_assignments() {
     return {
         type: types.CLEAR_ASSIGNMENTS,
-        payload: []
+        payload: {type: '', data: []}
     }
 }
 

@@ -15,6 +15,7 @@ class Add_Grade extends Component {
     
     componentWillReceiveProps(nextProps) {
         if(this.props.course !== nextProps.course) {
+            if(this.props.location.pathname === '/my-assignments') return
             this.props.get_assignments(nextProps.course)
         }
     }

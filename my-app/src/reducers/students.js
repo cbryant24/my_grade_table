@@ -18,11 +18,11 @@ const DEFAULT_STATE = {
         type:'',
         data: []
     },
-    // courses_assignment: {
-    //     type:'',
-    //     data: [],
-    //     count: null
-    // },
+    table_assignments: {
+        type:'',
+        data: [],
+        count: null
+    },
     user_activity: [],
     selected: {}
  };
@@ -59,11 +59,11 @@ export default (state = DEFAULT_STATE, action) => {
                 ...state,
                 selected: action.payload
             }
-        // case types.GET_COURSES_STUDENTS:
-        //     return {
-        //         ...state,
-        //         courses_assignment: action.payload
-        //     }
+        case types.GET_TABLE_ASSIGNMENTS:
+            return {
+                ...state,
+                table_assignments: action.payload
+            }
         case types.AUTH:
             return {
                 ...state,
@@ -72,7 +72,7 @@ export default (state = DEFAULT_STATE, action) => {
         case types.CLEAR_ASSIGNMENTS:
             return {
                 ...state,
-                user_assignments: action.payload
+                user_assignments: action.payload,
             }
         default:
             return state

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 export function render_input({input, label, value, meta: {submitFailed, pristine, active }}) {
-    // debugger
     return (
         <div className='input'>
             <label className='label'>{label}</label>
@@ -12,7 +11,6 @@ export function render_input({input, label, value, meta: {submitFailed, pristine
 }
 
 export function render_select({input, label, value, meta: {submitFailed, pristine, active}}, vals) {
-    // debugger
     const options = vals.data.map( (item, idx) => {
         return <option key={idx} value={item.id}>{item.display}</option>
     })

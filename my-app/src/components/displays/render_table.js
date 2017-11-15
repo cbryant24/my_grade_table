@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {update_selection} from '../../actions';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { update_selection, get_grades, get_courses, get_students, get_assignments, clear_assignments, update_record, get_activity, get_table_assignments } from '../../actions';
 
 
 class Render_Table extends Component {
@@ -29,9 +30,37 @@ class Render_Table extends Component {
                 </tr>
             )
         }
+        if(this.props.vals.type === 'courses') {
+            return (
+                <tr>
+                    <th>Course Name</th>
+                </tr>
+            )
+        }
+        if(this.props.vals.type === 'table_assignments') {
+            return (
+                <tr>
+                    <th>Course Name</th>
+                    <th>Assignment Name</th>
+                </tr>
+            )
+        }
         return <tr></tr>
     }
     
+    delete_record(item) {
+        debugger
+        axios.post('/api/delete',{...item, fb_id: this.props.fb_id}).then( res => {
+            debugger
+            console.log('this is the response from the delete', res)
+            this.props.get_activity(this.props.fb_id);
+            if(item.type === 'student') return this.props.get_students(this.props.fb_id)
+            if(item.type === 'course') return this.props.get_courses(this.props.fb_id)
+            if(item.type === 'assignment') return this.props.get_table_assignments(this.props.fb_id)                
+            if(item.type === 'grade') return this.props.get_grades(this.props.fb_id)
+        })
+    }
+
     render_table_list() {
         switch(this.props.vals.type) {
             case 'students': 
@@ -42,7 +71,7 @@ class Render_Table extends Component {
                             <td>{item.first_name} </td>
                             <td>{item.student_id}</td>
                             <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
-                            <td><button onClick={ () => this.props.update_selection(item)} className=''>Delete</button></td>    
+                            <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
                         </tr>
                     )
                 })
@@ -57,11 +86,32 @@ class Render_Table extends Component {
                             <td>{item.assignment_name}</td>
                             <td>{item.grade}</td>
                             <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
-                            <td><button onClick={ () => this.props.update_selection(item)} className=''>Delete</button></td>    
+                            <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
                         </tr>
                     )
                 })
-                return grade_list
+            case 'courses':
+            const course_list = this.props.vals.data.map( (item, idx) => {
+                return (
+                    <tr key={idx}>
+                        <td>{item.course_name} </td>
+                        <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
+                        <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
+                    </tr>
+                )
+            })
+            case 'table_assignments':
+            const assignment_list = this.props.vals.data.map( (item, idx) => {
+                return (
+                    <tr key={idx}>
+                        <td>{item.course_name} </td>
+                        <td>{item.assignment_name} </td>                        
+                        <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
+                        <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
+                    </tr>
+                )
+            })
+                return assignment_list
             default:
                 return <tr></tr>
         }
@@ -77,4 +127,4 @@ class Render_Table extends Component {
     }
 }
 
-export default connect(null, {update_selection})(Render_Table)
+export default connect(null, {update_selection, get_grades, get_courses, get_students, get_assignments, clear_assignments, update_record, get_activity, get_table_assignments})(Render_Table)
