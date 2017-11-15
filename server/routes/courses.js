@@ -16,9 +16,13 @@ router.post('/', (req, res) => {
             fb_id: req.body.fb_id,
         }})
         .then( courses => {
-            res.status(200).send(courses)
+            courses.forEach( item => {
+                item.dataValues.display = item.dataValues.course_name,
+                item.dataValues.type = 'course'
+            })
+            return res.status(200).send(courses)
+
         })
-        return
     }
 })
 

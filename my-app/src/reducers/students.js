@@ -2,15 +2,29 @@ import types from '../actions/types'
 
 const DEFAULT_STATE = { 
     auth: false,
-    all_students: [],
+    students: {
+        type:'',
+        data: []
+    },
+    assignments: {
+        type:'',
+        data: []
+    },
+    grades: {
+        type:'',
+        data: []
+    },
+    courses: {
+        type:'',
+        data: []
+    },
+    // courses_assignment: {
+    //     type:'',
+    //     data: [],
+    //     count: null
+    // },
     user_activity: [],
-    user_courses: [],
-    user_assignments: [],
-    selected_course: {},
-    selected_student: {},
-    selected_assignment: {},
-    student_grades: [],
-    selected_data: {}
+    selected: {}
  };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -18,42 +32,47 @@ export default (state = DEFAULT_STATE, action) => {
         case types.GET_STUDENTS:
             return {
                 ...state,
-                all_students: action.payload
+                students: action.payload
+            }
+        case types.GET_ASSIGNMENTS:
+            return {
+                ...state,
+                assignments: action.payload
+            }
+        case types.GET_COURSES:
+            return {
+                ...state,
+                courses: action.payload
+            }
+        case types.GET_GRADES:
+            return {
+                ...state,
+                grades: action.payload
             }
         case types.GET_ACTIVITY:
             return {
                 ...state,
                 user_activity: action.payload
             }
-        case types.GET_COURSES:
+        case types.UPDATE_SELECTION:
             return {
                 ...state,
-                user_courses: action.payload
+                selected: action.payload
             }
-        case types.SEARCH_COURSES: 
-            return {
-                ...state,
-                selected_course: action.payload
-            }
-        case types.GET_ASSIGNMENTS:
-            return {
-                ...state,
-                user_assignments: action.payload
-            }
-        case types.GET_GRADES:
-            return {
-                ...state,
-                student_grades: action.payload
-            }
-        case types.SELECT_DATA:
-            return {
-                ...state,
-                selected_data: action.payload
-            }
+        // case types.GET_COURSES_STUDENTS:
+        //     return {
+        //         ...state,
+        //         courses_assignment: action.payload
+        //     }
         case types.AUTH:
             return {
                 ...state,
                 auth: action.payload
+            }
+        case types.CLEAR_ASSIGNMENTS:
+            return {
+                ...state,
+                user_assignments: action.payload
             }
         default:
             return state

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Add_Course from '../forms/add_course_form';
-import { get_courses, search_courses } from '../../actions';
+import { get_courses } from '../../actions';
 import { connect } from 'react-redux';
 
 
@@ -55,4 +55,4 @@ function mapStateToProps(state) {
 
 Courses = reduxForm({form: 'courses'})(Courses);
 
-export default connect(mapStateToProps, { get_courses, search_courses })(Courses)
+export default connect(mapStateToProps, { get_courses })(Courses)

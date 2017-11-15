@@ -15,8 +15,10 @@ router.post('/', (req, res) => {
         fb_id: req.body.fb_id
     }})
     .then( students => {
-        students.forEach( item => item.students.type = 'student')
-        console.log('this is the students im sending the front', students[0])        
+        students.forEach( item => {
+            item.dataValues.type = 'student',
+            item.dataValues.display = `${item.dataValues.last_name}, ${item.dataValues.first_name}`
+        })
         res.send(students);
     })
 });

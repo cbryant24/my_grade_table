@@ -7,13 +7,16 @@ class Side_Bar extends Component {
         return (
             <div>
                 <div>
-                    <Link className='nav-link' to='/add_student'>Add Students</Link>
+                    <Link className='nav-link' to='/my-students'>Students</Link>
                 </div>
                 <div>
-                    <Link className='nav-link' to='/courses'>Courses</Link>
+                    <Link className='nav-link' to='/my-courses'>Courses</Link>
                 </div>
                 <div>
-                    <Link className='nav-link' to='/update'>Update/Remove Student</Link>
+                    <Link className='nav-link' to='/my-assignments'>Assignments</Link>
+                </div>
+                <div>
+                    <Link className='nav-link' to='/my-grades'>Grades</Link>
                 </div>
             </div> 
         )

@@ -1,65 +1,82 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { get_students, update_selection } from '../../actions'
+import { get_students, get_grades, get_courses, update_selection } from '../../actions'
 
 import { render_select } from '../forms/helpers';
-import { render_table_header } from './helpers';
+// import { render_table_header, render_table_list } from './helpers';
+import Render_Table from './render_table'
 import {  Field, reduxForm } from 'redux-form';
-import { TOUCH } from 'redux-form/lib/actionTypes';
 
 class Your_Students extends Component {
     componentWillMount() {
-        this.props.get_students(this.props.auth.fb_id);
-    }
-
-    render_students() {
         debugger
-        const student_list = this.props.all_students.map( (item, idx) => {
-            return (
-                <tr key={idx}>
-                    <td>{item.last_name} </td>
-                    <td>{item.first_name} </td>
-                    <td>{item.student_id}</td>
-                    <td><button onClick={ () => this.handle_edit(item)} className=''>Edit</button></td>      
-                </tr>
-            )
-        })
-        return student_list
+        const {fb_id} = this.props.auth;
+        const {pathname} = this.props.location
+        if(pathname === '/my-students') return this.props.get_students(fb_id)
+        if(pathname === '/my-courses') return this.props.get_courses(fb_id)
+        if(pathname === '/my-grades') return this.props.get_grades(fb_id)
     }
 
-    handle_filter(vals) {
-
-    }
-
-    handle_edit(item) {
-        
-        debugger
-        this.props.update_selection(item)
-    }
+    componentWillReceiveProps(nextProps) {
+        const {fb_id} = this.props.auth;
+        const {pathname} = this.props.location
+        if(nextProps.location.pathname !== pathname) {
+            if(nextProps.location.pathname === '/my-students') return this.props.get_students(fb_id)
+            if(nextProps.location.pathname === '/my-courses') return this.props.get_courses(fb_id)
+            if(nextProps.location.pathname === '/my-grades') return this.props.get_grades(fb_id)
+        }
+    }        
 
     render() { 
-        const { handleSubmit, all_students } = this.props
-        return (
-            <div>
+        const { students, courses, grades, assignments } = this.props
+        if(this.props.location.pathname === '/my-students') {
+            return (
                 <div>
-                    <h4>Your Students</h4>
+                    <div>
+                        <h4>Your Students</h4>
+                    </div>
+                    <div className='row tbl-header'>
+                        <table>
+                            <thead>
+                                <Render_Table header={true} vals={students}/>
+                            </thead>
+                        </table>
+                    </div>
+                    <div className='tbl-content'>
+                        <table>
+                            <tbody>
+                                <Render_Table list={true} vals={students} />
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div className='row tbl-header'>
-                    <table>
-                        <thead>
-                            {render_table_header({type: 'student'})}
-                        </thead>
-                    </table>
+            )
+        }
+        if(this.props.location.pathname === '/my-grades') {
+            return (
+                <div>
+                    <div>
+                        <h4>Grades</h4>
+                    </div>
+                    <div className='row tbl-header'>
+                        <table>
+                            <thead>
+                                <Render_Table header={true} vals={grades}/>
+                            </thead>
+                        </table>
+                    </div>
+                    <div className='tbl-content'>
+                        <table>
+                            <tbody>
+                                <Render_Table list={true} vals={grades} />
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div className='tbl-content'>
-                    <table>
-                        <tbody>
-                            {this.render_students()}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        )
+            )
+        }
+        
+    
     };
 };
 
@@ -68,8 +85,11 @@ class Your_Students extends Component {
 function mapStateToProps(state) {
     return {
         auth: state.students.auth,
-        all_students: state.students.all_students,
-        selected_data: state.students.selected_data        
+        grades: state.students.grades,
+        courses: state.students.courses,
+        students: state.students.students,
+        assignments: state.students.assignments,
+        selected: state.students.selected        
     }
 }
 
@@ -77,4 +97,4 @@ Your_Students = reduxForm({
     form: 'filter_student',
 })(Your_Students)
 
-export default connect(mapStateToProps,{get_students, update_selection})(Your_Students)
+export default connect(mapStateToProps,{get_students, get_grades, get_courses, update_selection })(Your_Students)

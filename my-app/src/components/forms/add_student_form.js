@@ -23,7 +23,6 @@ class Add_Student extends Component {
 
     render() {
         const { handleSubmit } = this.props
-        debugger
         return (
             <div className='col-6'>
                 <form onSubmit={ handleSubmit( (vals) => this.onSubmit(vals) )}>

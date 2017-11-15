@@ -15,7 +15,7 @@ class Update_Delete_Student extends Component {
         }
     }
     componentWillMount() {
-        this.props.get_students(this.props.auth.fb_id)
+        // this.props.get_students(this.props.auth.fb_id)
     }
 
     render_students() {

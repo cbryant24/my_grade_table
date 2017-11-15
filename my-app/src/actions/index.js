@@ -6,7 +6,7 @@ export function get_students(fb_id) {
         axios.post('/api/students', { fb_id }).then( res => {
             dispatch({
                 type: types.GET_STUDENTS,
-                payload: res.data
+                payload: {type: 'students', data: res.data}
             })
         })   
     }
@@ -50,18 +50,7 @@ export function get_courses(fb_id) {
         axios.post('/api/courses', { fb_id }).then(res => {
             dispatch({
                 type: types.GET_COURSES,
-                payload: res.data
-            })
-        })
-    }
-}
-
-export function search_courses(fb_id, course) {
-    return dispatch => {
-        axios.post('/api/courses/search', {fb_id, course }).then( res => {
-            dispatch({
-                type: types.SEARCH_COURSES,
-                payload: res.data
+                payload: {type: 'courses', data: res.data}
             })
         })
     }
@@ -72,9 +61,16 @@ export function get_assignments(course_id) {
         axios.post('/api/assignments', {course_id}).then( res => {
             dispatch({
                 type: types.GET_ASSIGNMENTS,
-                payload: res.data
+                payload: {type: 'assignments', data: res.data}
             })
         })
+    }
+}
+
+export function clear_assignments() {
+    return {
+        type: types.CLEAR_ASSIGNMENTS,
+        payload: []
     }
 }
 
@@ -83,22 +79,22 @@ export function get_grades(fb_id) {
         axios.post('/api/grades', {fb_id}).then( res => {
             dispatch({
                 type: types.GET_GRADES,
-                payload: res.data
+                payload: {type: 'grades', data: res.data}
             })
         })
     }
 }
 
 export function update_selection(data) {
-    return {
-        type: types.SELECT_DATA,
+    return  {
+        type: types.UPDATE_SELECTION,
         payload: data
     }
 }
 
-export function update_student_record(update_data) {
+export function update_record(update_data) {
     return dispatch => {
-        axios.put(`/api/students/update`, {update_data}).then( res => {
+        axios.put(`/api/update`, {update_data}).then( res => {
             dispatch({
                 type: types.UPDATE_STUDENT,
                 payload: res.data.students

@@ -16,8 +16,9 @@ import Delete_Update_Students from './displays/delete_update_student'
 
 import Add_Grade_Form from './forms/add_grade_form';
 import Add_Student_Form from './forms/add_student_form';
-import Table_Form from './forms/table_form'
 
+import App_Form from './forms/app_form';
+import Display_Table from './displays/display_table';
 
 import { sign_in, get_students } from '../actions';
 
@@ -46,23 +47,15 @@ class App extends Component {
             <div className='col-3 side-bar'>
               <Route path='/' component={Side_Bar}/>
             </div>
-              <div className='col-9 main-background'>
-                <div className='row'>
-                  <Route path='/' component={Activity_Feed}/>
-                  <Route path='/add_student' component={Table_Form} />
-                  <Route path='/grades' component={Add_Grade_Form}/>
-                </div>
-                  <Route exact path='/' component={Students}/>
-                  
-                  <Route path='/add_student' component={Your_Students} />
-
-                  <Route path='/courses' component={Courses}/>
-                  <Route path='/courses' component={Your_Courses}/>
-
-                  
-                  <Route exact path='/grades' component={Students}/>
-
-                  <Route path='/update_student' component={Delete_Update_Students}/>
+            <div className='col-9 main-background'>
+              <div className='row'>
+                <Route path='/' component={Activity_Feed}/>
+                <Route path='/my-students' component={App_Form} />
+                <Route path='/my-courses' component={App_Form} />
+                <Route path='/my-assignments' component={App_Form} />
+                <Route path='/my-grades' component={App_Form}/>
+              </div>
+              <Route path='/' component={Display_Table}/>
             </div>
           </div>
         </div>

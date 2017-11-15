@@ -1,0 +1,3 @@
+exports.get_grades = (fb_id) => {
+    return `SELECT students.first_name, students.last_name, grades.grade, courses.course_name, assignments.assignment_name, grades.id, grades.student_id, grades.course_id, grades.assignment_id FROM \`students\` JOIN \`grades\` ON students.id = grades.student_id JOIN \`courses\` ON courses.id = grades.course_id JOIN \`assignments\` ON assignments.id = grades.assignment_id WHERE students.fb_id = ${fb_id}`
+}

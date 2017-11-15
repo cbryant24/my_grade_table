@@ -14,6 +14,10 @@ router.post('/', (req, res) => {
         course_id: req.body.course_id
     }})
     .then( assignments => {
+        assignments.forEach( item => {
+            item.dataValues.display = item.dataValues.assignment_name,
+            item.dataValues.type = 'assignment'
+        })
         res.status(200).send(assignments);
     })
 })

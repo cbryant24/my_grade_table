@@ -10,7 +10,7 @@ class Add_Grade extends Component {
     componentWillMount() {
         const {fb_id} = this.props.auth
         this.props.get_courses(fb_id);
-        this.props.get_students(fb_id);
+        // this.props.get_students(fb_id);
     }
     
     componentWillReceiveProps(nextProps) {
