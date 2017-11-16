@@ -15,8 +15,8 @@ class Nav_Bar extends Component {
     render() {
         return(
             <div className='nav-bar'>
-                <h2 className='col-8'><Md_Layers/><a className='nav-link' href='/'>My Students Grade</a></h2>
-                <ul className="nav col-4">
+                <h2 className='col-sm-8'><a className='nav-link' href='/'>My Students Grade</a></h2>
+                <ul className="nav col-sm-4">
                     <li className='nav-item'>
                         <Link className='nav-link' to='/'>Home</Link>
                     </li>

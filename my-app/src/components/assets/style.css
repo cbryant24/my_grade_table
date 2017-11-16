@@ -9,17 +9,19 @@ body {
     background: -webkit-linear-gradient(left, #25c481, #25b7c4);
     background: linear-gradient(to right, #25c481, #25b7c4);
     font-family: 'Roboto', sans-serif;
+    min-width: 83%;
 }
 
 .side-bar {
     background-color: black;
     height: 89vh;
+    min-width: 16%;
 }
 
 .nav-bar {
     background: black;
     width: 100%;
-    height: 11vh;
+    height: 12vh;
 }
 
 .nav-bar h2, .nav-bar ul {
@@ -56,6 +58,39 @@ body {
 .btn-edit:hover {
     background-color: #4CAF50; /* Green */
     color: white;
+}
+
+@media (max-width: 900px) {
+    .side-bar a {
+        font-size: 2vh;
+    }
+    .nav-bar h2 {
+        font-size: 3vh;
+    }
+}
+
+
+@media (max-width: 725px) {
+    .side-bar a {
+        font-size: 1.5vh;
+    }
+    .nav-bar ul {
+        font-size: 2vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .side-bar, .nav-bar ul {
+        display: none;
+    }
+    .main-background {
+        min-width: 100%;
+        min-height: 88vh;
+    }
+
+    .tbl-content, .tbl-header {
+        max-width: 100vw;
+    }
 }
 
 /* .add-student-form {
@@ -156,20 +191,22 @@ form label {
 /*|_______________________________________________________________________________________________|*/
 
 table {
-    width: 75%;
+    width: 95%;
+    margin: auto;
 }
 
 .tbl-header {
     background-color: rgba(255,255,255,0.3);
     max-width: 69vw;
     margin: auto;
+    overflow-x: auto;
 }
 
 th {
-    padding: 10px 15px;
-    text-align: right;
-    font-weight: 500;
-    font-size: 12px;
+    padding: 17px 6px;
+    text-align: center;
+    font-weight: 1000;
+    font-size: 13px;
     text-transform: uppercase;
     max-width: 69vw;
     margin: auto;
@@ -193,6 +230,30 @@ td {
     max-width: 69vw;
     margin: auto;
   }
+
+
+  @media (max-width: 576px) {
+    .tbl-content, .tbl-header {
+        max-width: 100vw;
+    }
+
+  }
+  
+
+
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+/*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*
+/*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*
+/*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*SIDENAV*//*
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+
+
+
+
 
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/

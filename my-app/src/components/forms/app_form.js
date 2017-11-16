@@ -178,7 +178,7 @@ class App_Form extends Component {
         switch(pathname) {
             case('/my-students'):
             return (
-                <div className='col-6 student-form'>
+                <div className='col-sm-6 col-xs-12 student-form'>
                     <form onSubmit={ handleSubmit( vals => this.form_submit(vals) )}>
                         <div className='form-header'><h5>Student</h5></div>
                         <Field name='first_name' component={render_input} label='First Name'></Field>
@@ -193,7 +193,7 @@ class App_Form extends Component {
             )
             case('/my-courses'):
             return (
-                <div className='col-6 student-form'>
+                <div className='col-sm-6 col-xs-12 student-form'>
                     <form onSubmit={ handleSubmit( vals => this.form_submit(vals) )}>
                         <div className='form-header'><h5>Course</h5></div>
                         <Field name='course' component={render_input} label='Course'></Field>                 
@@ -206,7 +206,7 @@ class App_Form extends Component {
             )
             case('/my-assignments'):
             return (
-                <div className='col-6 student-form'>
+                <div className='col-sm-6 col-xs-12student-form'>
                     <form onSubmit={ handleSubmit( vals => this.form_submit(vals) )}>
                         <div className='form-header'><h5>Assignment</h5></div>
                         <Field name='course' component={(input) => render_select(input, this.props.courses)} label='Course'></Field> 
@@ -221,7 +221,7 @@ class App_Form extends Component {
             )
             case('/my-grades'):
             return (
-                <div className='col-6 student-form'>
+                <div className='col-sm-6 col-xs-12 student-form'>
                     <form onSubmit={ handleSubmit( vals => this.form_submit(vals) )}>
                         <div className='form-header'><h5>Grade</h5></div>
                         <Field name='student' component={(input) =>  render_select(input, students )} label='Student' type='select'></Field>

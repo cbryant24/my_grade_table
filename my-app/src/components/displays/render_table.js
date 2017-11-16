@@ -42,6 +42,8 @@ class Render_Table extends Component {
                 <tr>
                     <th>Course Name</th>
                     <th>Assignment Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             )
         }
@@ -77,6 +79,7 @@ class Render_Table extends Component {
                 })
                 return student_list
             case 'grades':
+            debugger
                 const grade_list = this.props.vals.data.map( (item, idx) => {
                     return (
                         <tr key={idx}>
@@ -90,27 +93,29 @@ class Render_Table extends Component {
                         </tr>
                     )
                 })
+                return grade_list
             case 'courses':
-            const course_list = this.props.vals.data.map( (item, idx) => {
-                return (
-                    <tr key={idx}>
-                        <td>{item.course_name} </td>
-                        <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
-                        <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
-                    </tr>
-                )
-            })
+                const course_list = this.props.vals.data.map( (item, idx) => {
+                    return (
+                        <tr key={idx}>
+                            <td>{item.course_name} </td>
+                            <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
+                            <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
+                        </tr>
+                    )
+                })
+                return course_list
             case 'table_assignments':
-            const assignment_list = this.props.vals.data.map( (item, idx) => {
-                return (
-                    <tr key={idx}>
-                        <td>{item.course_name} </td>
-                        <td>{item.assignment_name} </td>                        
-                        <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
-                        <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
-                    </tr>
-                )
-            })
+                const assignment_list = this.props.vals.data.map( (item, idx) => {
+                    return (
+                        <tr key={idx}>
+                            <td>{item.course_name} </td>
+                            <td>{item.assignment_name} </td>                        
+                            <td><button onClick={ () => this.props.update_selection(item)} className=''>Edit</button></td>  
+                            <td><button type='button' onClick={ () => this.delete_record(item)} className=''>Delete</button></td>    
+                        </tr>
+                    )
+                })
                 return assignment_list
             default:
                 return <tr></tr>

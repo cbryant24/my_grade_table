@@ -23,7 +23,7 @@ class Activity_Feed extends Component {
     render() {
         const { pathname } = this.props.location
         return (
-            <div className={`activity-feed col-${pathname === '/' ? '12':'5'}`}>
+            <div className={`activity-feed col-xs-12 col-sm-${pathname === '/' ? '12':'5'}`}>
                 <h4>Activity Feed</h4>
                 <ul>
                     {this.render_activity()}

@@ -44,10 +44,10 @@ class App extends Component {
             <Route path='/' component={Nav_Bar}/>
           </div>
           <div className='row'>
-            <div className='col-3 side-bar'>
+            <div className='col-2 side-bar'>
               <Route path='/' component={Side_Bar}/>
             </div>
-            <div className='col-9 main-background'>
+            <div className='col-10 main-background'>
               <div className='row'>
                 <Route path='/' component={Activity_Feed}/>
                 <Route path='/my-students' component={App_Form} />
