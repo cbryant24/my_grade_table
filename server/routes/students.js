@@ -54,9 +54,7 @@ router.post('/add', (req, res) => {
             transaction: `Added student ${req.body.vals.first_name} ${req.body.vals.last_name}`
         }})
         .spread( (history, created) => {
-            resp.history.created = created;
-            resp.history.history = history
-            res.status(200).send(student)
+            res.status(200).send({msg: history.transaction})
         })
     })
 })

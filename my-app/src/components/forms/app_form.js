@@ -120,12 +120,20 @@ class App_Form extends Component {
                     type: this.props.selected.type,
                     fb_id: this.props.auth.fb_id
                 }
-                axios.put('/api/update',student_update).then( res => {
-                    console.log(res)
-                    this.props.reset()
-                    this.props.get_activity(this.props.auth.fb_id)
-                    this.props.get_students(this.props.auth.fb_id)   
+                this.setState({edit_mode: false})
+                if(validate(student_update, this.props.location.pathname)) 
+                    return this.props.open_close_modal({open: true, type: 'error', data: student_update})
+                
+                this.props.open_close_modal({
+                    open: true, 
+                    type: 'update_confirmation', 
+                    data: student_update, 
+                    table: this.props.selected.type,                    
+                    title: 'Update Student?',
+                    status: 'update',
+                    reset: this.props.reset
                 })
+                return
             }
             if(this.props.selected.type === 'assignment') {
                 debugger
@@ -181,11 +189,14 @@ class App_Form extends Component {
             return this.props.open_close_modal({open: true, type: 'error', data: vals})
 
         if(this.props.location.pathname === '/my-students') {
-            axios.post('/api/students/add', {vals, fb_id:this.props.auth.fb_id}).then( res => {
-                console.log('this is the response from the students post', res)
-                this.props.reset()
-                this.props.get_activity(this.props.auth.fb_id)
-                this.props.get_students(this.props.auth.fb_id)
+            this.props.open_close_modal({
+                open: true, 
+                type: 'confirmation', 
+                data: vals,
+                table: 'student',
+                title: 'Add Student?', 
+                status: 'add',
+                reset: this.props.reset
             })
         }
         if(this.props.location.pathname === '/my-courses') {

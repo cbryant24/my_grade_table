@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ScrollLock from 'react-scrolllock';//npm install react-scrolllock
 import Md_Close from 'react-icons/lib/md/close';//npm install react-icons
-import { open_close_modal, get_activity, get_grades, get_table_assignments, get_courses, update_selection } from '../actions';
+import { open_close_modal, get_activity, get_grades, get_table_assignments, get_courses, update_selection, get_students } from '../actions';
 import axios from 'axios'
 
 import { CSSTransition } from 'react-transition-group'
@@ -65,6 +65,7 @@ class Modal extends Component {
                     modal.reset()
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_grades(this.props.auth.fb_id)
+                    this.props.update_selection({})                    
             })
             }
             if(modal.status === 'update') {
@@ -75,6 +76,7 @@ class Modal extends Component {
                     modal.reset()
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_grades(this.props.auth.fb_id)
+                    this.props.update_selection({})                    
                 })
             }
             if(modal.status === 'delete') {
@@ -95,7 +97,7 @@ class Modal extends Component {
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_table_assignments(this.props.auth.fb_id)
                     modal.reset()
-                    
+                    this.props.update_selection({})                    
             })
             }
             if(modal.status === 'update') {
@@ -106,7 +108,7 @@ class Modal extends Component {
                     this.props.get_table_assignments(this.props.auth.fb_id)  
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Assignment Updated'})                    
                     modal.reset()
-                    
+                    this.props.update_selection({})                    
                 })
             }
             if(modal.status === 'delete') {
@@ -117,6 +119,7 @@ class Modal extends Component {
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Assignment Deleted'})                    
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_courses(this.props.auth.fb_id)
+                    this.props.update_selection({})                    
                 })
             }
         }
@@ -148,9 +151,45 @@ class Modal extends Component {
                 this.props.open_close_modal({open: false})                
                 axios.post('/api/delete', {...modal.data, fb_id: this.props.auth.fb_id }).then( res => {
                     debugger
-                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Assignment Deleted'})                    
+                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Deleted'})                    
                     this.props.get_activity(this.props.auth.fb_id)
-                    this.props.get_table_assignments(this.props.auth.fb_id)
+                    this.props.get_courses(this.props.auth.fb_id)
+                    this.props.update_selection({})
+                    
+                })
+            }
+        }
+        if(modal.table === 'student') {
+            if(modal.status === 'add') {
+                this.props.open_close_modal({open: false})
+                axios.post('/api/students/add', {vals: modal.data, fb_id: this.props.auth.fb_id }).then( res => {
+                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Added'})
+                    this.props.get_activity(this.props.auth.fb_id)
+                    this.props.get_students(this.props.auth.fb_id)  
+                    modal.reset()
+                    this.props.update_selection({})                    
+            })
+            }
+            if(modal.status === 'update') {
+                this.props.open_close_modal({open: false})               
+                axios.put('/api/update',modal.data).then( res => {
+                    debugger
+                    this.props.get_activity(this.props.auth.fb_id)
+                    this.props.get_students(this.props.auth.fb_id)  
+                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Updated'})                    
+                    modal.reset()
+                    this.props.update_selection({})
+                })
+            }
+            if(modal.status === 'delete') {
+                debugger
+                this.props.open_close_modal({open: false})                
+                axios.post('/api/delete', {...modal.data, fb_id: this.props.auth.fb_id }).then( res => {
+                    debugger
+                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Student Deleted'})                    
+                    this.props.get_activity(this.props.auth.fb_id)
+                    this.props.get_students(this.props.auth.fb_id)
+                    this.props.update_selection({})
                 })
             }
         }
@@ -159,7 +198,6 @@ class Modal extends Component {
     render_modal_data() {
         const { modal } = this.props;
         if(modal.type === 'update_confirmation' || modal.type === 'confirmation') {
-            debugger
             if(modal.table === 'grade' && this.state.grade.length > 0) {
                 return (
                     <div>
@@ -213,6 +251,27 @@ class Modal extends Component {
                                 <div><p>Course: <span>{modal.data.course_name || modal.data.course}</span></p></div>
                                         <button onClick={() => this.modal_submit_conf()} className='bttn-material-flat bttn-xs bttn-gray'>Submit</button>
                                         <button onClick={()=> this.props.open_close_modal({open: false})} className='bttn-material-flat bttn-xs bttn-gray'>Cancel</button>                                        
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+            debugger
+            if(modal.table === 'student') {
+                return (
+                    <div>
+                        <div id='modal-header'>
+                            <span className='close-icon' onClick={()=> this.props.open_close_modal({open: false})}><Md_Close/></span>
+                            <h4 className='text-center'>{modal.title}</h4>
+                        </div>
+                        <div>
+                            {/* <hr /> */}
+                            <div className='modal-data'>
+                                <div><p>Last Name: <span>{modal.data.last_name}</span></p></div>
+                                <div><p>First Name: <span>{modal.data.first_name}</span></p></div>
+                                <div><p>Student ID: <span>{modal.data.student_id}</span></p></div>                                
+                                    <button onClick={() => this.modal_submit_conf()} className='bttn-material-flat bttn-xs bttn-gray'>Submit</button>
+                                    <button onClick={()=> this.props.open_close_modal({open: false})} className='bttn-material-flat bttn-xs bttn-gray'>Cancel</button>                                        
                             </div>
                         </div>
                     </div>
@@ -295,4 +354,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {open_close_modal, get_activity, get_grades, get_table_assignments, get_courses, update_selection })(Modal)
+export default connect(mapStateToProps, {open_close_modal, get_activity, get_grades, get_table_assignments, get_courses, update_selection, get_students })(Modal)

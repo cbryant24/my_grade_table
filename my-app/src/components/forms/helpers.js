@@ -34,12 +34,12 @@ export const validate = (vals, location) => {
     let errors = false
     const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@'-, ]+$/);
     const numeric = new RegExp(/^\d+$/);
-    if (!vals.student && location === '/my-students') {
-        vals.errors.student = 'Enter a Student'
+    if (!vals.first_name || !vals.last_name || !vals.student_id && location === '/my-students') {
+        vals.errors.student = 'Enter a Student Name and ID'
         errors = true
     }
-    if(!alpha_numeric.test(vals.student)) {
-        vals.errors.student = 'Enter a Valid Student Name'
+    if(!alpha_numeric.test(vals.first_name) || !alpha_numeric.test(vals.last_name) || !alpha_numeric.test(vals.student_id)) {
+        vals.errors.student = 'Enter a Valid Student Name And ID'
         errors = true
     }
     if (!vals.course && !vals.course_name && location === '/my-courses') {

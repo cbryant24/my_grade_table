@@ -82,7 +82,13 @@ class Render_Table extends Component {
                             <td>{item.first_name} </td>
                             <td>{item.student_id}</td>
                             <td><button onClick={ () => this.props.update_selection(item)} className='bttn-material-flat bttn-xs bttn-gray'>Edit</button></td>  
-                            <td><button type='button' onClick={ () => this.delete_record(item)} className='bttn-material-flat bttn-xs bttn-gray'>Delete</button></td>    
+                            <td><button type='button' onClick={ () => this.props.open_close_modal({
+                                data: {...item}, 
+                                open: true, 
+                                table: item.type, 
+                                type: 'confirmation', 
+                                title: 'Delete Record?', 
+                                status: 'delete'})} className='bttn-material-flat bttn-xs bttn-gray'>Delete</button></td>    
                         </tr>
                     )
                 })

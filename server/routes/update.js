@@ -47,7 +47,7 @@ router.put('/', (req, res) => {
                     transaction: `Updated student ${req.body.first_name} ${req.body.last_name}`
                 }})
                 .spread( (history, created) => {
-                    res.status(200).send(history)
+                    res.status(200).send({msg: history.transaction})
                 })
             }).catch(err => {
                 console.log(err)
