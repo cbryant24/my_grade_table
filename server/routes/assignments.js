@@ -48,9 +48,10 @@ router.post('/add', (req, res) => {
             transaction: `Added assignment ${req.body.vals.assignment}`
         }})
         .spread( (history, created) => {
-            res.status(200).send(history)
+            res.status(200).send({msg: history.transaction})
         })
     })
 })
+
 
 module.exports = router;

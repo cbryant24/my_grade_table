@@ -24,7 +24,8 @@ const DEFAULT_STATE = {
         count: null
     },
     user_activity: [],
-    selected: {}
+    selected: {},
+    modal: {}
  };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -60,6 +61,7 @@ export default (state = DEFAULT_STATE, action) => {
                 selected: action.payload
             }
         case types.GET_TABLE_ASSIGNMENTS:
+        debugger
             return {
                 ...state,
                 table_assignments: action.payload
@@ -72,7 +74,12 @@ export default (state = DEFAULT_STATE, action) => {
         case types.CLEAR_ASSIGNMENTS:
             return {
                 ...state,
-                user_assignments: action.payload,
+                assignments: action.payload,
+            }
+        case types.OPEN_CLOSE_MODAL:
+            return {
+                ...state,
+                modal: action.payload,
             }
         default:
             return state

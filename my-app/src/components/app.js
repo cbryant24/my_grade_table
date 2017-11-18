@@ -22,6 +22,11 @@ import Display_Table from './displays/display_table';
 
 import { sign_in, get_students } from '../actions';
 
+import Side_Nav from './side-nav';
+import Modal from './student_modal';
+
+
+
 class App extends Component {
   componentWillMount() {
     this.props.sign_in()
@@ -40,7 +45,10 @@ class App extends Component {
 
     return (
         <div>
+          <Modal/>
           <div className='row'>
+            <Side_Nav/>
+            
             <Route path='/' component={Nav_Bar}/>
           </div>
           <div className='row'>

@@ -68,6 +68,7 @@ export function get_assignments(course_id) {
 }
 
 export function get_table_assignments(fb_id) {
+    debugger
     return dispatch => {
         axios.post('/api/assignments/all', {fb_id}).then( res => {
             dispatch({
@@ -111,5 +112,12 @@ export function update_record(update_data) {
                 payload: res.data.students
             })
         })
+    }
+}
+
+export function open_close_modal(modal_info) {
+    return {
+        type: types.OPEN_CLOSE_MODAL,
+        payload: modal_info
     }
 }

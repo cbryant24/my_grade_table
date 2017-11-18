@@ -30,7 +30,7 @@ router.post('/add', (req, res) => {
                 transaction: `Added graded of ${req.body.vals.grade} for ${activity_info[0].last_name}, ${activity_info[0].first_name} in ${activity_info[0].assignment_name}, ${activity_info[0].course_name}`
             }})
             .spread( (history, created) => {
-                res.status(200).send(history)
+                res.status(200).send({msg: history.transaction})
             })
 
         })
@@ -45,6 +45,23 @@ router.post('/', (req, res) => {
             item.type = 'grade'
         })
         res.status(200).send(student_grades)
+    })
+})
+
+router.post('/get-info', (req, res) => {
+    console.log('this is the request obj', req.body)
+    if(typeof req.body.student_id === 'object') 
+        req.body.student_id = req.body.student_id.id
+    if(typeof req.body.assignment_id === 'object') 
+        req.body.assignment_id = req.body.assignment_id.id
+    if(typeof req.body.course_id === 'object') 
+        req.body.course_id = req.body.course_id.id
+    let grade_activity = require('./sql_queries').grade_statement(req.body.student_id || req.body.student, req.body.course_id || req.body.course, req.body.assignment_id || req.body.assignment)
+    sequelize.query(
+        grade_activity,
+        { type: sequelize.QueryTypes.SELECT}
+    ).then( grade_info => {
+        res.status(200).send(grade_info)
     })
 })
 

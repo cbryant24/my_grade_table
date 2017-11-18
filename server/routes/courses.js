@@ -49,9 +49,17 @@ router.post('/add', (req, res) => {
             transaction: `Added Course ${req.body.vals.course}`
         }})
         .spread( (history, created) => {
-            res.status(200).send(history)
+            res.status(200).send({msg: history.transaction})
         })
     })
+})
+
+router.post('/get-info', (req, res) => {
+    console.log('this is get info course req body', req.body)
+    Courses.
+    findById(req.body.data).then( course => {
+        res.status(200).send(course)
+      })
 })
 
 module.exports = router;

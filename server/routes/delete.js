@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
                     transaction: `Deleted assignment ${req.body.assignment_name}`
                 }})
                 .spread( (history, created) => {
-                    res.status(200).send(history)
+                    res.status(200).send({msg: history.transaction})
                 })
             })
     }
@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
                     transaction: `Deleted grade of ${req.body.grade} for ${req.body.first_name}, ${req.body.last_name} in ${req.body.assignment_name}, ${req.body.course_name}`
                 }})
                 .spread( (history, created) => {
-                    res.status(200).send(history)
+                    res.status(200).send({msg: history.transaction})
                 })
             })
     }

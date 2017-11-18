@@ -26,7 +26,7 @@ router.put('/', (req, res) => {
                     transaction: `Updated course ${req.body.course_name}`
                 }})
                 .spread( (history, created) => {
-                    res.status(200).send(history)
+                    res.status(200).send({msg: history.transaction})
                 })
             }).catch(err => {
                 console.log(err)
@@ -67,13 +67,21 @@ router.put('/', (req, res) => {
                     transaction: `Updated assignment ${req.body.assignment_name}`
                 }})
                 .spread( (history, created) => {
-                    res.status(200).send(history)
+                    res.status(200).send({msg: history.transaction})
                 })
             }).catch(err => {
                 console.log(err)
             })
     }
     if(req.body.type === 'grade') {
+        if(typeof req.body.student_id === 'object') 
+            req.body.student_id = req.body.student_id.id
+        if(typeof req.body.assignment_id === 'object') 
+            req.body.assignment_id = req.body.assignment_id.id
+        if(typeof req.body.course_id === 'object') 
+            req.body.course_id = req.body.course_id.id
+
+        console.log('this be the req body from grade', req.body)
         Grades.update(
             { 
                 student_id: req.body.student_id,
@@ -83,19 +91,20 @@ router.put('/', (req, res) => {
             },
             { where: {id: req.body.id}})
             .spread( (affectedCount, affectedRows) => {
+                console.log('these are the affectedCounts and rows', affectedCount, affectedRows)
+                if(affectedCount == 0)  return res.status(200).send({msg: 'Sorry there was an error please try again'})
                 const grade_activity = require('./sql_queries').grade_statement(req.body.student_id, req.body.course_id, req.body.assignment_id)
                 sequelize.query(
                     grade_activity,
                     { type: sequelize.QueryTypes.SELECT}
                 ).then( activity_info => {
-                    console.log('this is the daaaata from body on grades activity', activity_info)                    
                     User_History
                     .findOrCreate({ where: {
                         fb_id: req.body.fb_id,
                         transaction: `Updated grade to ${req.body.grade} for ${activity_info[0].first_name}, ${activity_info[0].last_name} in ${activity_info[0].assignment_name}, ${activity_info[0].course_name}`
                     }})
                     .spread( (history, created) => {
-                        res.status(200).send(history)
+                        res.status(200).send({msg: history.transaction})
                     })
 
                 })

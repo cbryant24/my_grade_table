@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/server/routes/update.js"
+            "program": "${workspaceFolder}/server/routes/courses.js"
         }
     ]
 }
