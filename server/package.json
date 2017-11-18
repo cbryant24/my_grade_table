@@ -1,0 +1,31 @@
+{
+  "name": "sgt",
+  "version": "1.0.0",
+  "description": "student grade table",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbryant24/SGT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbryant24/SGT/issues"
+  },
+  "homepage": "https://github.com/cbryant24/SGT#readme",
+  "dependencies": {
+    "ajax-request": "^1.2.3",
+    "body-parser": "^1.18.2",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.15.4",
+    "mysql": "^2.14.1",
+    "mysql2": "^1.4.2",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "safe-json-stringify": "^1.0.4",
+    "sequelize": "^4.8.3"
+  }
+}

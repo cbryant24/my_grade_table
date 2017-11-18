@@ -1,3 +1,7 @@
 .DS_Store
+my-app/node_modules/
+server/node_modules/
+server/config/
+universal-components
 .idea
 README.md
