@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { sign_in, sign_out } from '../actions';
-import Md_Layers from 'react-icons/lib/md/layers'
 
 
 /**

@@ -105,7 +105,6 @@ export function get_assignments(course_id) {
  * containing an array of assignments from the database for display on the users assignment table 
  */
 export function get_table_assignments(fb_id) {
-    debugger
     return dispatch => {
         axios.post('/api/assignments/all', {fb_id}).then( res => {
             dispatch({

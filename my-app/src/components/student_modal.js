@@ -254,7 +254,6 @@ class Modal extends Component {
                     </div>
                 )
             }
-            debugger
             if(modal.table === 'student') {
                 return (
                     <div>
@@ -277,7 +276,6 @@ class Modal extends Component {
         }
         
         if(modal.type === 'error') {
-            debugger
             let errors = []
             for(let name in modal.data.errors) {
                 errors.push(<li key={name}>{modal.data.errors[name]}</li>)
@@ -302,7 +300,6 @@ class Modal extends Component {
         }
 
         if(modal.type === 'message') {
-            debugger
             return (
                 <div>
                     <div id='modal-header'>

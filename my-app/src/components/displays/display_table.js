@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { get_students, get_grades, get_courses, update_selection, get_table_assignments } from '../../actions'
-
-import { render_select } from '../forms/helpers';
 import Render_Table from './render_table'
-import {  Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 
 
 /**
@@ -52,7 +50,7 @@ class Display_Table extends Component {
     }        
 
     render() { 
-        const { students, courses, grades, assignments, table_assignments } = this.props
+        const { students, courses, grades, table_assignments } = this.props
         if(this.props.location.pathname === '/my-students') {
             return (
                 <div>

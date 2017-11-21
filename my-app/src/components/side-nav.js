@@ -45,7 +45,6 @@ class Side_Nav extends Component {
      * @returns updates state nav_in and back_drop_hide to false closing the mobile side-nav
      */
     close_nav() {
-        debugger
         this.setState({
             back_drop_hide: false,
             nav_in: false

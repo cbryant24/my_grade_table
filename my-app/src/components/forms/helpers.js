@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 /**
  * @function render_input
@@ -48,7 +47,6 @@ export function render_select({input, label, value, meta: {touched, error}}, val
  *  error checking is depenent upon users path 
  */
 export const validate = (vals, location) => {
-    debugger
     vals.errors = {}
     let errors = false
     /**regex to verify user is only entering allowed characters */

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { update_selection, 
     get_grades, get_courses, 
     get_students, 
@@ -127,7 +126,6 @@ class Render_Table extends Component {
                 return grade_list
             case 'courses':
                 const course_list = this.props.vals.data.map( (item, idx) => {
-                    debugger
                     return (
                         <tr key={idx}>
                             <td>{item.course_name} </td>
@@ -163,7 +161,6 @@ class Render_Table extends Component {
                 })
                 return assignment_list
             case 'home':
-            debugger
                 const home_list = this.props.vals.data.map( (item, idx) => {
                     return (
                         <tr key={idx}>

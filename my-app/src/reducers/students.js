@@ -46,7 +46,6 @@ export default (state = DEFAULT_STATE, action) => {
                 courses: action.payload
             }
         case types.GET_GRADES:
-        debugger
             return {
                 ...state,
                 grades: action.payload
@@ -62,7 +61,6 @@ export default (state = DEFAULT_STATE, action) => {
                 selected: action.payload
             }
         case types.GET_TABLE_ASSIGNMENTS:
-        debugger
             return {
                 ...state,
                 table_assignments: action.payload

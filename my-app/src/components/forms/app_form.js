@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, formValues, formValueSelector, change } from 'redux-form';
+import { Field, reduxForm, formValues, change } from 'redux-form';
 import { render_input, render_select, validate } from './helpers';
-// import render_select from './helpers'
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { 
     update_selection, 
     get_grades, 
@@ -11,7 +9,6 @@ import {
     get_students, 
     get_assignments, 
     clear_assignments, 
-    update_record, 
     get_activity, 
     get_table_assignments,
     open_close_modal } from '../../actions';
@@ -150,7 +147,6 @@ class App_Form extends Component {
                 return
             }
             if(this.props.selected.type === 'student') {
-                debugger
                 let student_update = {
                     first_name: vals.first_name,
                     last_name: vals.last_name,
@@ -176,7 +172,6 @@ class App_Form extends Component {
                 return
             }
             if(this.props.selected.type === 'assignment') {
-                debugger
                 let assignment_update = {
                     id: this.props.selected.id,
                     assignment_name: vals.assignment,
@@ -200,7 +195,6 @@ class App_Form extends Component {
                 return
             }
             if(this.props.selected.type === 'course') {
-                debugger
                 let course_update = {
                     course_name: vals.course,
                     fb_id: this.props.auth.fb_id,
@@ -254,7 +248,6 @@ class App_Form extends Component {
             })
         }
         if(this.props.location.pathname === '/my-assignments') {
-            debugger
             this.props.open_close_modal({
                 open: true, 
                 type: 'confirmation', 
@@ -289,7 +282,7 @@ class App_Form extends Component {
 
     render() {
         const { pathname } = this.props.location
-        const { handleSubmit, courses, students, assignments, selected, errors } = this.props
+        const { handleSubmit, courses, students, assignments, errors } = this.props
         switch(pathname) {
             case('/my-students'):
             return (
