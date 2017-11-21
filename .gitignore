@@ -1,7 +1,8 @@
 .DS_Store
 my-app/node_modules/
 server/node_modules/
-server/config/
+server/config/fb_keys.js
+server/config/mysqlCredentials.js
 universal-components
 .idea
 README.md
