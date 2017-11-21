@@ -1,3 +1,5 @@
+/**@module record_delete */
+
 const models = require('../models');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -13,8 +15,15 @@ const sequelize = models.sequelize;
 const router = express.Router();
 
 router.use(bodyParser.json())
+
+/**
+ * @function 
+ * @param {Object} req client request object for update of database record 
+ * @param {Object} res server response object with confirmation or error of update
+ * @returns {Object} message with status for client update request of database record,
+ * update of request from database table dependent on request update object type
+ */
 router.put('/', (req, res) => {
-    console.log('this is the request body from update', req.body)    
     if(req.body.type === 'course') {
         Courses.update(
             { course_name: req.body.course_name},
@@ -81,7 +90,6 @@ router.put('/', (req, res) => {
         if(typeof req.body.course_id === 'object') 
             req.body.course_id = req.body.course_id.id
 
-        console.log('this be the req body from grade', req.body)
         Grades.update(
             { 
                 student_id: req.body.student_id,
@@ -91,9 +99,11 @@ router.put('/', (req, res) => {
             },
             { where: {id: req.body.id}})
             .spread( (affectedCount, affectedRows) => {
-                console.log('these are the affectedCounts and rows', affectedCount, affectedRows)
                 if(affectedCount == 0)  return res.status(200).send({msg: 'Sorry there was an error please try again'})
+                
+                /**raw sql query written in helpers */
                 const grade_activity = require('./sql_queries').grade_statement(req.body.student_id, req.body.course_id, req.body.assignment_id)
+                
                 sequelize.query(
                     grade_activity,
                     { type: sequelize.QueryTypes.SELECT}

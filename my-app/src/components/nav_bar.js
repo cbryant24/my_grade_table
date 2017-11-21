@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import FaBook from 'react-icons/lib/fa/book';
 import { sign_in, sign_out } from '../actions';
 import Md_Layers from 'react-icons/lib/md/layers'
 
 
+/**
+ * @class 
+ * @classdesc renders a react class component that display top navigation links
+ */
 class Nav_Bar extends Component {
-    
+    /**
+     * @function handle_logout
+     * @returns invokes the action creator sign_out that 
+     * updates the redux state auth and signs user out
+     */
     handle_logout() {
         this.props.sign_out()
     }

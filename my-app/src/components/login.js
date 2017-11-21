@@ -18,7 +18,7 @@ class Signup extends Component {
             <Redirect to='/home'/>
         }
     }
-
+    
     render() {
         return (
             <div className='col-12 login'>

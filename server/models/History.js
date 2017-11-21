@@ -1,3 +1,12 @@
+/**@module grades_table */
+
+/**
+ * @function 
+ * @param {object} sequelize 
+ * @param {object} DataTypes 
+ * @returns model of history sql database table using npm library sequelize
+ */
+
 module.exports = (sequelize, DataTypes) => {
     const User_History = sequelize.define('history', {
         id: {

@@ -1,3 +1,5 @@
+/**@module grades_route */
+
 const models = require('../models');
 const express = require('express');
 const bodyParser = require('body-parser')
@@ -9,8 +11,14 @@ const sequelize = models.sequelize;
 
 router.use(bodyParser.json());
 
+
+/**
+ * @function 
+ * @param {Object} req client request object for creation of a user grade record
+ * @param {Object} res server response object with message
+ * @returns {Object} message for client to display for user with status of create record
+ */
 router.post('/add', (req, res) => {
-    console.log('this is the req from body on grades', req.body)
     Grades
     .findOrCreate({ where: {
         student_id: req.body.vals.student,
@@ -23,7 +31,7 @@ router.post('/add', (req, res) => {
             grade_activity,
             { type: sequelize.QueryTypes.SELECT}
         ).then( activity_info => {
-            console.log('this is the data from body on grades activity', activity_info)            
+            /**add to history table after success for user activity feed */
             User_History
             .findOrCreate({ where: {
                 fb_id: req.body.fb_id,
@@ -37,6 +45,12 @@ router.post('/add', (req, res) => {
     })
 })
 
+/**
+ * @function 
+ * @param {Object} req client request object for data from the database grades table 
+ * @param {Object} res server response object with associated user from grades database table
+ * @returns {Object} data from the grades table that are associated with user request
+ */
 router.post('/', (req, res) => {
     const get_grades = require('./sql_queries').get_grades(req.body.fb_id) 
     sequelize.query( get_grades,
@@ -48,8 +62,16 @@ router.post('/', (req, res) => {
     })
 })
 
+/**
+ * @function 
+ * @param {Object} req client request object for data from the database grades table 
+ * @param {Object} res server response object with message 
+ * @returns {Object} data from the grades table to confirm update, delete, creation of grade record
+ */
 router.post('/get-info', (req, res) => {
-    console.log('this is the request obj', req.body)
+    /**
+     * normalize client req data object
+     */
     if(typeof req.body.student_id === 'object') 
         req.body.student_id = req.body.student_id.id
     if(typeof req.body.assignment_id === 'object') 

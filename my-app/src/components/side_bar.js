@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
+/**
+ * @class
+ * @classdesc renders a react class component the displays the side bar links
+ */
 class Side_Bar extends Component {
     render() {
         return (

@@ -64,7 +64,7 @@ class App_Form extends Component {
      * @param {Object} nextProps 
      * @returns 
      *  if user has selected a new course clears assignments from 
-     *  selection and retireves new user selected assignments associated 
+     *  selection and retireves new user selected assignments associated, 
      *  if user has selected a record from the table user form values are
      *  updated to user selected object dependent on route
      */
@@ -103,7 +103,7 @@ class App_Form extends Component {
 
     /**
      * @function form_submit
-     * @param {Object} vals 
+     * @param {Object} vals redux form vals from user input
      * @returns 
      *  open modal with determined status of users action of create or update
      *  if error or confirmation with completed record object 
@@ -121,7 +121,7 @@ class App_Form extends Component {
             vals.course = vals.course.id
 
         /**
-         * if user has selected to edit a record the record object will be built here
+         * if user has selected to edit a record the record object for the database is be built here
          */
         if(this.state.edit_mode) {
             if(this.props.selected.type === 'grade') {

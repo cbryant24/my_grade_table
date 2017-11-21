@@ -9,9 +9,17 @@ import {  Field, reduxForm } from 'redux-form';
 
 /**
  * @class
- * @classdesc renders a react class component that displays users activity
+ * @classdesc 
+ *  renders a react class component renders the users 
+ *  students, assignments, courses, and history dependent upon route
  */
 class Display_Table extends Component {
+    /**
+     * @function componentWillMount
+     * @returns 
+     *  updates redux state for students, table_assignments, 
+     *  courses, and grades dependent upon users initial route
+     */
     componentWillMount() {
         const {fb_id} = this.props.auth;
         const {pathname} = this.props.location
@@ -23,6 +31,13 @@ class Display_Table extends Component {
         
     }
 
+    /**
+     * @function componentWillReceiveProps
+     * @param {Object} nextProps 
+     * @returns 
+     *  updates redux state for students, table_assignments, 
+     *  courses, and grades dependent upon route
+     */
     componentWillReceiveProps(nextProps) {
         const {fb_id} = this.props.auth;
         const {pathname} = this.props.location

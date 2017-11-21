@@ -19,8 +19,7 @@ import Modal from './student_modal';
 
 /**
  * @class 
- * @classdesc Holds the all game information for joinable games user is not apart of
- * @returns a class component with all games listed that user is not apart of
+ * @classdesc Holds forms, tables, and navigation links
  */
 class App extends Component {
     /**

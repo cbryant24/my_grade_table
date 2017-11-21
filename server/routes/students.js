@@ -1,3 +1,5 @@
+/**@module students_route */
+
 const models = require('../models');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,6 +11,13 @@ let Grades = models.grades;
 
 router.use(bodyParser.json())
 
+
+/**
+ * @function 
+ * @param {Object} req client request object for data from the database students table 
+ * @param {Object} res server response object with associated user students from database students table
+ * @returns {Array} of data objects from the courses table that are associated with user requester
+ */
 router.post('/', (req, res) => {
     Students
     .findAll({ where: {
@@ -23,9 +32,13 @@ router.post('/', (req, res) => {
     })
 });
 
-
+/**
+ * @function 
+ * @param {Object} req client request object for creation of a new student record
+ * @param {Object} res server response object with message
+ * @returns {Object} message for client to display for user with status of create record
+ */
 router.post('/add', (req, res) => {
-    console.log('this is the request body from update', req.body)    
     const resp = {
         student: {
             created: null,
@@ -47,7 +60,7 @@ router.post('/add', (req, res) => {
     .spread( (student, created) => {
         resp.student.created = created;
         resp.student.student = student;
-
+        /**add to history table after success for user activity feed */
         User_History
         .findOrCreate({ where: {
             fb_id: req.body.fb_id,

@@ -6,6 +6,11 @@ import ScrollLock from 'react-scrolllock';//npm install react-scrolllock
 import Md_Close from 'react-icons/lib/md/close'//npm instal react-icons
 import Md_Menu from 'react-icons/lib/md/menu'
 
+
+/**
+ * @class 
+ * @classdesc renders a react class component that displays the mobile side nav links
+ */
 class Side_Nav extends Component {
     constructor(props) {
         super(props)
@@ -16,15 +21,18 @@ class Side_Nav extends Component {
         }
     }
 
-    render_login() {
-        
-        return <li className="nav-item"><a href=''>Logout</a></li>
-    }
-
+    /**
+     * @function handle_logout
+     * @returns invokes the action creator sign_out that 
+     * updates the redux state auth and signs user out
+     */
     handle_logout() {
         this.props.sign_out()
     }
-
+    /**
+     * @function open_nav
+     * @returns updates state nav_in and back_drop_hide to true bringing in the mobile side-nav
+     */
     open_nav() {
         this.setState({
             nav_in: true,
@@ -32,6 +40,10 @@ class Side_Nav extends Component {
         })
         
     }
+    /**
+     * @function close_nav
+     * @returns updates state nav_in and back_drop_hide to false closing the mobile side-nav
+     */
     close_nav() {
         debugger
         this.setState({
@@ -40,12 +52,15 @@ class Side_Nav extends Component {
         }) 
     }
     
+    /**
+     * @function backdrop_click
+     * @returns updates state nav_in and back_drop_hide to false closing the mobile side-nav
+     */
     backdrop_click() {
         this.setState({
             back_drop_hide: false,
             nav_in: false
         })
-        console.log('hello everyone')
     }
 
     render() {

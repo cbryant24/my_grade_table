@@ -8,7 +8,12 @@ import axios from 'axios'
 
 import { CSSTransition } from 'react-transition-group'
 
-const Fade = ({ children, ...props }) => (
+/**
+ * @function Transition
+ * @param {object} param0 
+ * @returns a container element for wrapped jsx that adds css transitions for wrapped element
+ */
+const Transition = ({ children, ...props }) => (
     <CSSTransition
       {...props}
       timeout={500}
@@ -17,6 +22,10 @@ const Fade = ({ children, ...props }) => (
     </CSSTransition>
   );
 
+/**
+ * @class
+ * @classdesc react class component that displays a modal either confirming the users actions or displaying app messages
+ */
 class Modal extends Component {
     constructor(props) {
         super(props)
@@ -26,35 +35,35 @@ class Modal extends Component {
             course: {}
         }
     }
-
+    /**
+     * @function componentWillReceiveProps
+     * @param {Object} nextProps 
+     * @returns 
+     *  verifies that info user selected when adding grades or 
+     *  assignments is the correct record they want to create or edit
+     *  by retrieving name associated with assignment id, course id, or student id
+     */
     componentWillReceiveProps(nextProps) {
-        debugger
         if(nextProps.modal.table === 'grade') {
             axios.post('/api/grades/get-info', {...nextProps.modal.data}).then( grade =>{
-                debugger
                 this.setState({ grade: grade.data})
             })
         }
         if(nextProps.modal.table === 'assignment') {
-            debugger
             axios.post('/api/courses/get-info', {data: nextProps.modal.data.course_id} ).then( course =>{
-                debugger
                 this.setState({ course: course.data})
             })
         }
 
     }
-    button_click() {
-        this.props.open_close_modal({open: this.props.modal.open ? false:true})
-    }
 
-    delete_record() {
-        const { modal } = this.props;
-        
-    }
-
+    /**
+     * @function modal_submit_conf
+     * @returns closes confirmation modal and api post to database for add, update and delete
+     * for assignments, grades, students, and courses and opens response
+     * modal with message from server dependent upon object type
+     */
     modal_submit_conf() {
-        debugger
         const { modal } = this.props;
         if(modal.table === 'grade') {
             if(modal.status === 'add') {
@@ -70,7 +79,6 @@ class Modal extends Component {
             if(modal.status === 'update') {
                 this.props.open_close_modal({open: false})               
                 axios.put('/api/update',modal.data).then( res => {
-                    debugger
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Grade Updated'})          
                     modal.reset()
                     this.props.get_activity(this.props.auth.fb_id)
@@ -79,7 +87,6 @@ class Modal extends Component {
                 })
             }
             if(modal.status === 'delete') {
-                debugger
                 this.props.open_close_modal({open: false})                
                 axios.post('/api/delete', {...modal.data, fb_id: this.props.auth.fb_id }).then( res => {
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Grade Deleted'})          
@@ -102,7 +109,6 @@ class Modal extends Component {
             if(modal.status === 'update') {
                 this.props.open_close_modal({open: false})               
                 axios.put('/api/update',modal.data).then( res => {
-                    debugger
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_table_assignments(this.props.auth.fb_id)  
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Assignment Updated'})                    
@@ -111,13 +117,11 @@ class Modal extends Component {
                 })
             }
             if(modal.status === 'delete') {
-                debugger
                 this.props.open_close_modal({open: false})                
                 axios.post('/api/delete', {...modal.data, fb_id: this.props.auth.fb_id }).then( res => {
-                    debugger
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Assignment Deleted'})                    
                     this.props.get_activity(this.props.auth.fb_id)
-                    this.props.get_courses(this.props.auth.fb_id)
+                    this.props.get_table_assignments(this.props.auth.fb_id)  
                     this.props.update_selection({})                    
                 })
             }
@@ -136,7 +140,6 @@ class Modal extends Component {
             if(modal.status === 'update') {
                 this.props.open_close_modal({open: false})               
                 axios.put('/api/update',modal.data).then( res => {
-                    debugger
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_courses(this.props.auth.fb_id)  
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Updated'})                    
@@ -146,10 +149,8 @@ class Modal extends Component {
                 })
             }
             if(modal.status === 'delete') {
-                debugger
                 this.props.open_close_modal({open: false})                
                 axios.post('/api/delete', {...modal.data, fb_id: this.props.auth.fb_id }).then( res => {
-                    debugger
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Deleted'})                    
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_courses(this.props.auth.fb_id)
@@ -172,7 +173,6 @@ class Modal extends Component {
             if(modal.status === 'update') {
                 this.props.open_close_modal({open: false})               
                 axios.put('/api/update',modal.data).then( res => {
-                    debugger
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_students(this.props.auth.fb_id)  
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Updated'})                    
@@ -181,10 +181,8 @@ class Modal extends Component {
                 })
             }
             if(modal.status === 'delete') {
-                debugger
                 this.props.open_close_modal({open: false})                
                 axios.post('/api/delete', {...modal.data, fb_id: this.props.auth.fb_id }).then( res => {
-                    debugger
                     this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Student Deleted'})                    
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_students(this.props.auth.fb_id)
@@ -193,7 +191,11 @@ class Modal extends Component {
             }
         }
     }
-
+    /**
+     * @function render_modal_data
+     * @returns a modal response or confirmation dependent upon
+     * current redux modal state of type and table 
+     */
     render_modal_data() {
         const { modal } = this.props;
         if(modal.type === 'update_confirmation' || modal.type === 'confirmation') {
@@ -205,7 +207,6 @@ class Modal extends Component {
                             <h4 className='text-center'>{modal.title}</h4>
                         </div>
                         <div>
-                            {/* <hr /> */}
                             <div className='modal-data'>
                                 <div><p>Student: <span>{this.state.grade[0].last_name},{this.state.grade[0].first_name}</span></p></div>
                                 <div><p>Course: <span>{this.state.grade[0].course_name}</span></p></div>
@@ -226,7 +227,6 @@ class Modal extends Component {
                             <h4 className='text-center'>{modal.title}</h4>
                         </div>
                         <div>
-                            {/* <hr /> */}
                             <div className='modal-data'>
                                 <div><p>Course: <span>{this.state.course.course_name}</span></p></div>
                                 <div><p>Assignment: <span>{modal.data.assignment_name || modal.data.assignment}</span></p></div>
@@ -245,7 +245,6 @@ class Modal extends Component {
                             <h4 className='text-center'>{modal.title}</h4>
                         </div>
                         <div>
-                            {/* <hr /> */}
                             <div className='modal-data'>
                                 <div><p>Course: <span>{modal.data.course_name || modal.data.course}</span></p></div>
                                         <button onClick={() => this.modal_submit_conf()} className='bttn-material-flat bttn-xs bttn-gray'>Submit</button>
@@ -264,7 +263,6 @@ class Modal extends Component {
                             <h4 className='text-center'>{modal.title}</h4>
                         </div>
                         <div>
-                            {/* <hr /> */}
                             <div className='modal-data'>
                                 <div><p>Last Name: <span>{modal.data.last_name}</span></p></div>
                                 <div><p>First Name: <span>{modal.data.first_name}</span></p></div>
@@ -291,7 +289,6 @@ class Modal extends Component {
                         <h4 className='text-center'>Error!</h4>
                     </div>
                         <div>
-                            {/* <hr /> */}
                             <div className='modal-data'>
                         <ul className='error'>
                             {errors}
@@ -313,7 +310,6 @@ class Modal extends Component {
                         <h4 className='text-center'>{modal.title}</h4>
                     </div>
                         <div>
-                            {/* <hr /> */}
                         <div className='modal-data'>
                         <p className='text-center'>{modal.message}</p>
                         </div>
@@ -331,13 +327,13 @@ class Modal extends Component {
                     {modal.open ?  <ScrollLock/> : ''}
                     <div onClick={()=> this.props.open_close_modal({open: false})} className={modal.open ? '':'hide'} id='backdrop'>
                     </div>
-                    <Fade in={this.props.modal.open}>
+                    <Transition in={this.props.modal.open}>
                         <div className={`container ${modal.open ? 'modal-open': 'modal-closed'}`}>
                             <div>
                                 {this.render_modal_data()}
                             </div>
                         </div>
-                    </Fade>
+                    </Transition>
                 </div>
             )
     }

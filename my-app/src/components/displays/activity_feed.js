@@ -16,9 +16,12 @@ class Activity_Feed extends Component {
         this.props.get_activity(this.props.auth.fb_id)
     }
 
+    /**
+     * @function render_activity
+     * @returns returns array of activity feed jsx elements for display
+     */
     render_activity() {
         const { activity_feed } = this.props
-
         if(activity_feed.length > 0) {
             const activity_list = activity_feed.map( (item, idx) => {
                 return <li key={idx}>{item.transaction} </li>

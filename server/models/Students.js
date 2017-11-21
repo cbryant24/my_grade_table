@@ -1,3 +1,12 @@
+/**@module students */
+
+/**
+ * @function 
+ * @param {object} sequelize 
+ * @param {object} DataTypes 
+ * @returns model of students sql database table using npm library sequelize
+ */
+
 module.exports = (sequelize, DataTypes) => {
     const Students = sequelize.define('students', {
         id: {
@@ -17,13 +26,3 @@ module.exports = (sequelize, DataTypes) => {
     );
     return Students;
 }
-
-
-
-
-// video_game: {
-//     type: DataTypes.STRING,
-//     validate: {
-//         len: [2,20]
-//     }
-// }

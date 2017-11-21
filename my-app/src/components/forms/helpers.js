@@ -16,6 +16,13 @@ export function render_input({input, label, value, meta: {touched, error}}) {
     )
 }
 
+/**
+ * @function render_select
+ * @param {Object} param0 
+ * @param {Object} vals 
+ * @returns a select input with database values for students, courses, and assignments
+ * 
+ */
 export function render_select({input, label, value, meta: {touched, error}}, vals) {
     const options = vals.data.map( (item, idx) => {
         return <option key={idx} value={item.id}>{item.display}</option>
@@ -32,11 +39,19 @@ export function render_select({input, label, value, meta: {touched, error}}, val
     )
 }
 
-
+/**
+ * @function validate
+ * @param {object} vals
+ * @param {location} location users current path
+ * @returns 
+ *  an object with anny errors matched against the specified statements 
+ *  error checking is depenent upon users path 
+ */
 export const validate = (vals, location) => {
     debugger
     vals.errors = {}
     let errors = false
+    /**regex to verify user is only entering allowed characters */
     const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@'-, ]+$/);
     const numeric = new RegExp(/^\d+$/);
     if ((!vals.first_name || !vals.last_name || !vals.student_id) && location === '/my-students') {

@@ -1,3 +1,12 @@
+/**@module instructors */
+
+/**
+ * @function 
+ * @param {object} sequelize 
+ * @param {object} DataTypes 
+ * @returns model of insturctors sql database table using npm library sequelize
+ */
+
 module.exports = (sequelize, dataType) => {
     const Instructors = sequelize.define('users',{
         id: {

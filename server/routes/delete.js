@@ -1,3 +1,5 @@
+/**@module record_delete_route */
+
 const models = require('../models');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,12 +12,20 @@ let Courses = models.courses;
 
 const router = express.Router();
 
+/**
+ * @function 
+ * @param {Object} req client request object for deletion of database record 
+ * @param {Object} res server response object with confirmation or error
+ * @returns {Object} message with status for client deletion request from database,
+ * deletion of request from database table dependent on request deletion object type
+ */
 router.use(bodyParser.json())
 router.post('/', (req, res) => {
     if(req.body.type === 'course') {
         Courses.destroy(
             { where: {id: req.body.id}})
             .then( () => {
+                /**add to history table after success for user activity feed */
                 User_History
                 .findOrCreate({ where: {
                     fb_id: req.body.fb_id,
@@ -30,6 +40,7 @@ router.post('/', (req, res) => {
         Students.destroy(
             { where: {id: req.body.id}})
             .then( () => {
+                /**add to history table after success for user activity feed */
                 User_History
                 .findOrCreate({ where: {
                     fb_id: req.body.fb_id,
@@ -44,6 +55,7 @@ router.post('/', (req, res) => {
         Assignments.destroy(
             { where: {id: req.body.id}})
             .then( () => {
+                /**add to history table after success for user activity feed */
                 User_History
                 .findOrCreate({ where: {
                     fb_id: req.body.fb_id,
@@ -54,12 +66,11 @@ router.post('/', (req, res) => {
                 })
             })
     }
-    console.log('this is the body from grade destroy', req.body)    
     if(req.body.type === 'grade') {
         Grades.destroy(
             { where: {id: req.body.id}})
             .then( () => {
-                console.log('deleted')
+                /**add to history table after success for user activity feed */
                 User_History
                 .findOrCreate({ where: {
                     fb_id: req.body.fb_id,
@@ -70,14 +81,6 @@ router.post('/', (req, res) => {
                 })
             })
     }
-})
-
-// const grade_activity = require('./sql_queries').grade_statement(req.body.student_id, req.body.course_id, req.body.assignment_id)
-// sequelize.query(
-//     grade_activity,
-//     { type: sequelize.QueryTypes.SELECT}
-// ).then( activity_info => {
-//     console.log('this is the daaaata from body on grades activity', activity_info)                    
-    
+})  
 
 module.exports = router

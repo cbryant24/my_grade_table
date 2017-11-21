@@ -1,8 +1,14 @@
+/**@module database_connection */
+
+
 const fs = require('fs');
 const Sequelize = require('sequelize');
 const my_creds = require('../config/mysqlCredentials');
 
-//creating the Object that can be used to access the database specified in the credintials file
+/**
+ * @constructor 
+ * creates a new sql database connection
+ */
 const sequelize = new Sequelize(my_creds.database, my_creds.user, my_creds.password, {
     host: my_creds.host, 
     dialect: my_creds.dialect, 
@@ -11,16 +17,19 @@ const sequelize = new Sequelize(my_creds.database, my_creds.user, my_creds.passw
       }
 });
 
-//object that will be exported with the ability to access each database table using Sequelize and table name
+/**
+ * @type {object} 
+ * object that will hold all instanses of the database tables and connection
+ */
 const grade_tbs = {};
 
-// grade_tbs.Sequelize = sequelize.import(__dirname + '/Grades');
-// grade_tbs.sequelize = sequelize;
 
-//using fileserve create an array of the sql_database models (which are used to access every table of the database)
-//fileserve is used pull the filenames out of a directory using filter ensuring it's not any hidden files or index files
-//then for each file path import that ito model into a variable
-//add that model to the grade_tbs object by name using the variable we just/had to create
+
+/**
+ * using fileserve create an array of the sql_database table models 
+ * fileserve is used to pull the filenames out of a directory using filter ensuring it's not any hidden files or index files
+ * each file path import this model into an variale and add that model to the sports_finder_tbls object
+ */
 fs.readdirSync(__dirname).
 filter( (file) => file[0] !== '.' && file !== 'index.js' ).
 forEach( (file) => {
@@ -34,15 +43,10 @@ Object.keys(grade_tbs).forEach(function(modelName) {
     }
   });
 
-//add the sequelize connection to the database in the object under the Sequelize name
+/**
+ * add the sequelize connection to the sql database in the object
+ */
 grade_tbs.sequelize = sequelize;
 grade_tbs.Sequelize = Sequelize;
 
-// grade_tbs.Sequelize.sync().then(function(){
-//     grade_tbs.courses.findAll().then( (table) => {
-//         console.log(JSON.stringify(table))
-//     })
-// })
-
-//export the object 
 module.exports = grade_tbs;

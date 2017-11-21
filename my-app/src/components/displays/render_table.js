@@ -16,6 +16,10 @@ import { update_selection,
  * courses, and grades based on users route
  */
 class Render_Table extends Component {
+    /**
+     * @function render_table_header
+     * @returns the header for the display_table component renders dependent upon pathname
+     */
     render_table_header() {
         if(this.props.vals.type === 'students') {
             return (
@@ -72,7 +76,13 @@ class Render_Table extends Component {
         )}
         return <tr></tr>
     }
-
+    /**
+     * @function render_table_list
+     * @returns 
+     *  the table data formatted and displayed in the table body for display table,
+     *  click handlers attached to each elment to update redux selected state with the user
+     *  selected record, rendered dependent upon route
+     */
     render_table_list() {
         switch(this.props.vals.type) {
             case 'students': 
