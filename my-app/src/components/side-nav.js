@@ -87,6 +87,12 @@ class Side_Nav extends Component {
     }
 }
 
+/**
+ * @function mapStateToProps
+ * @param {Object} state 
+ * @returns adds state auth to props to verify user login and logout
+ */
+
 function mapStateToProps(state) {
     return {
         auth: state.students.auth

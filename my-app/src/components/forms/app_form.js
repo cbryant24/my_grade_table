@@ -16,7 +16,11 @@ import {
     get_table_assignments,
     open_close_modal } from '../../actions';
 
-
+/**
+ * @class
+ * @classdesc renders a react class component that displays a redux form
+ * that allows the user to add/update students, assignments, courses and grades
+ */
 class App_Form extends Component {    
     constructor(props) {
         super(props)
@@ -25,6 +29,13 @@ class App_Form extends Component {
             edit_mode: false
         }
     }
+    /**
+     * @function componentWillMount
+     * @returns 
+     *  updates redux state students and courses  
+     *  by calling action creators get_students, get_courses, 
+     *  with user id to display for user selection for adding assignments and grades
+     */
     componentWillMount() {
         const {fb_id} = this.props.auth;
         const {pathname} = this.props.location
@@ -38,11 +49,25 @@ class App_Form extends Component {
         }
     }
 
+    /**
+     * @function componentWillUnmount
+     * @returns clears the users selected record from redux state selected
+     * clears state assignments from redux state to clear form for use on other routes
+     */
     componentWillUnmount() {
         this.props.update_selection({})
         this.props.clear_assignments()
     }
 
+    /**
+     * @function componentWillReceiveProps
+     * @param {Object} nextProps 
+     * @returns 
+     *  if user has selected a new course clears assignments from 
+     *  selection and retireves new user selected assignments associated 
+     *  if user has selected a record from the table user form values are
+     *  updated to user selected object dependent on route
+     */
     componentWillReceiveProps(nextProps) {
         if(nextProps.course && nextProps.course !== this.props.course) {
             this.props.clear_assignments()
@@ -76,8 +101,18 @@ class App_Form extends Component {
     }
 
 
-
+    /**
+     * @function form_submit
+     * @param {Object} vals 
+     * @returns 
+     *  open modal with determined status of users action of create or update
+     *  if error or confirmation with completed record object 
+     *  for database posting
+     */
     form_submit(vals) {
+        /**
+         * normalizing vals object from update object with appropriate property names and values
+         */
         if(typeof vals.student === 'object') 
             vals.student = vals.student.id
         if(typeof vals.assignment === 'object') 
@@ -85,6 +120,9 @@ class App_Form extends Component {
         if(typeof vals.course === 'object') 
             vals.course = vals.course.id
 
+        /**
+         * if user has selected to edit a record the record object will be built here
+         */
         if(this.state.edit_mode) {
             if(this.props.selected.type === 'grade') {
                 let grade_update = {
@@ -97,6 +135,7 @@ class App_Form extends Component {
                     fb_id: this.props.auth.fb_id
                 }
                 this.setState({edit_mode: false}) 
+                /**checking for any form validation errors preventing user submission with errors or no vals */
                 if(validate(grade_update, this.props.location.pathname)) 
                     return this.props.open_close_modal({open: true, type: 'error', data: grade_update})               
                 this.props.open_close_modal({
@@ -121,6 +160,7 @@ class App_Form extends Component {
                     fb_id: this.props.auth.fb_id
                 }
                 this.setState({edit_mode: false})
+                /**checking for any form validation errors preventing user submission with errors or no vals */
                 if(validate(student_update, this.props.location.pathname)) 
                     return this.props.open_close_modal({open: true, type: 'error', data: student_update})
                 
@@ -145,6 +185,7 @@ class App_Form extends Component {
                     fb_id: this.props.auth.fb_id
                 }
                 this.setState({edit_mode: false}) 
+                /**checking for any form validation errors preventing user submission with errors or no vals */
                 if(validate(assignment_update, this.props.location.pathname)) 
                     return this.props.open_close_modal({open: true, type: 'error', data: assignment_update})
                 this.props.open_close_modal({
@@ -166,7 +207,8 @@ class App_Form extends Component {
                     id: this.props.selected.id,
                     type: this.props.selected.type
                 }
-                this.setState({edit_mode: false})                
+                this.setState({edit_mode: false}) 
+                /**checking for any form validation errors preventing user submission with errors or no vals */
                 if(validate(course_update, this.props.location.pathname)) 
                     return this.props.open_close_modal({open: true, type: 'error', data: course_update})
                 this.props.open_close_modal({
@@ -184,7 +226,8 @@ class App_Form extends Component {
             this.props.open_close_modal({open: true, type: 'error', data: { errors: {selection: 'Please Select a Record to Edit'}}})
             return
         }
-        debugger
+
+        /**checking for any form validation errors preventing user submission with errors or no vals */
         if(validate(vals, this.props.location.pathname)) 
             return this.props.open_close_modal({open: true, type: 'error', data: vals})
 
@@ -235,6 +278,10 @@ class App_Form extends Component {
         }
     }
 
+    /**
+     * @function handle_cancel
+     * @returns clears and resets redux form and clears redux state selected of previously selected record
+     */
     handle_cancel() {
         this.props.reset();
         this.props.update_selection({})
@@ -339,6 +386,17 @@ class App_Form extends Component {
 
 App_Form = formValues('student', 'course', 'grade', 'assignment')(App_Form)
 
+/**
+ * @function mapStateToProps
+ * @param {Object} state 
+ * @param {Object} ownProps
+ * @returns 
+ *  adds state selected student to props for form record update for user selected record, 
+ *  adds courses state to props for loading of values in form for adding grades and assignemnts
+ *  adds students state to props for loading of values in form for adding grades for students
+ *  adds assignments state to props for loading of values in form for adding grades
+ *  adds auth to state to associate courses and students with the user
+ */
 function mapStateToProps(state, ownProps) {
     return {
         selected: state.students.selected,
@@ -360,37 +418,3 @@ export default connect(mapStateToProps, {
     form: 'student_grade',
     car: 'hello'
 }, mapStateToProps)(App_Form))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

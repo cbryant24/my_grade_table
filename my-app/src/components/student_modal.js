@@ -49,7 +49,6 @@ class Modal extends Component {
     }
 
     delete_record() {
-        debugger
         const { modal } = this.props;
         
     }
@@ -344,7 +343,12 @@ class Modal extends Component {
     }
 }
 
-
+/**
+ * @function mapStateToProps
+ * @param {Object} state 
+ * @returns adds state auth to props for api posts to the database for associated data
+ * @returns adds modal state to component to allow for global open and closing status for modal
+ */
 
 
 function mapStateToProps(state) {

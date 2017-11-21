@@ -3,7 +3,15 @@ import { get_activity } from '../../actions';
 import { connect } from 'react-redux';
 
 
+/**
+ * @class
+ * @classdesc renders a react class component that displays users activity
+ */
 class Activity_Feed extends Component {
+    /**
+     * @function componentWillMount
+     * @returns updates state activity_feed by calling action creator get_activity with user id 
+     */
     componentWillMount() {
         this.props.get_activity(this.props.auth.fb_id)
     }
@@ -33,6 +41,14 @@ class Activity_Feed extends Component {
         ) 
     }
 }
+
+/**
+ * @function mapStateToProps
+ * @param {Object} state 
+ * @returns 
+ *  adds state auth to props to retrieve users activity history from database
+ *  adds state activity_feed to props to retrieve user acitivity after each update
+ */
 
 function mapStateToProps(state) {
     return {

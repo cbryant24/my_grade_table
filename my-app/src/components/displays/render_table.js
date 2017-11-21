@@ -6,12 +6,15 @@ import { update_selection,
     get_students, 
     get_assignments, 
     clear_assignments, 
-    update_record, 
     get_activity, 
     get_table_assignments,
     open_close_modal } from '../../actions';
 
-
+/**
+ * @class
+ * @classdesc renders a react class component that displays users students, assignments,
+ * courses, and grades based on users route
+ */
 class Render_Table extends Component {
     render_table_header() {
         if(this.props.vals.type === 'students') {
@@ -57,20 +60,18 @@ class Render_Table extends Component {
                 </tr>
             )
         }
+        if(this.props.vals.type === 'home') {
+        return (
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Course</th>
+                <th>Assignment</th>
+                <th>Grade</th>
+            </tr>
+        )}
         return <tr></tr>
     }
-    
-    // delete_record(item) {
-    //     axios.post('/api/delete',{...item, fb_id: this.props.fb_id}).then( res => {
-    //         debugger
-    //         console.log('this is the response from the delete', res)
-    //         this.props.get_activity(this.props.fb_id);
-    //         if(item.type === 'student') return this.props.get_students(this.props.fb_id)
-    //         if(item.type === 'course') return this.props.get_courses(this.props.fb_id)
-    //         if(item.type === 'assignment') return this.props.get_table_assignments(this.props.fb_id)                
-    //         if(item.type === 'grade') return this.props.get_grades(this.props.fb_id)
-    //     })
-    // }
 
     render_table_list() {
         switch(this.props.vals.type) {
@@ -151,6 +152,21 @@ class Render_Table extends Component {
                     )
                 })
                 return assignment_list
+            case 'home':
+            debugger
+                const home_list = this.props.vals.data.map( (item, idx) => {
+                    return (
+                        <tr key={idx}>
+                            <td>{item.last_name} </td>
+                            <td>{item.first_name} </td>
+                            <td>{item.course_name}</td>
+                            <td>{item.assignment_name}</td>
+                            <td>{item.grade}</td>                      
+                        </tr>
+                    )
+                })
+                return home_list
+
             default:
                 return <tr></tr>
         }
@@ -172,7 +188,7 @@ export default connect(null, {update_selection,
     get_students, 
     get_assignments, 
     clear_assignments, 
-    update_record, 
     get_activity, 
     get_table_assignments,
-    open_close_modal})(Render_Table)
+    open_close_modal
+})(Render_Table)

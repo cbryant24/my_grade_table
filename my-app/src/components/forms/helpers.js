@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+/**
+ * @function render_input
+ * @param {obj} param0 redux form object values and methods
+ * @return input field for redux form for game creation and editing
+ */
 export function render_input({input, label, value, meta: {touched, error}}) {
     return (
         <div className='input'>
@@ -34,7 +39,7 @@ export const validate = (vals, location) => {
     let errors = false
     const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@'-, ]+$/);
     const numeric = new RegExp(/^\d+$/);
-    if (!vals.first_name || !vals.last_name || !vals.student_id && location === '/my-students') {
+    if ((!vals.first_name || !vals.last_name || !vals.student_id) && location === '/my-students') {
         vals.errors.student = 'Enter a Student Name and ID'
         errors = true
     }
