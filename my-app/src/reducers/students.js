@@ -46,6 +46,7 @@ export default (state = DEFAULT_STATE, action) => {
                 courses: action.payload
             }
         case types.GET_GRADES:
+        debugger
             return {
                 ...state,
                 grades: action.payload
