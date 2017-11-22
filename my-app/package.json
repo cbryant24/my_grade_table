@@ -4,13 +4,13 @@
   "private": true,
   "proxy": {
     "/students": {
-      "target": "http://localhost:4000"
+      "target": "http://localhost:4001"
     },
     "/signin/facebook": {
-      "target": "http://localhost:4000"
+      "target": "http://localhost:4001"
     },
     "/api/*": {
-      "target": "http://localhost:4000"
+      "target": "http://localhost:4001"
     }
   },
   "dependencies": {

@@ -3,6 +3,8 @@ body {
     width: 100%;
     text-transform: uppercase;
     font-family: 'Roboto', sans-serif;
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
 }
 
 .main-background {
@@ -96,6 +98,136 @@ body {
 /* .add-student-form {
     display: none
 } */
+
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+/*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*
+/*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*
+/*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*LOGINPAGE*//*
+/*|_______________________________________________________________________________________________|*/
+/*|_______________________________________________________________________________________________|*/
+
+
+.login-container {
+    height: 37vh;
+    width: 79vw;
+    position: relative;
+    top: 30vh;
+}
+
+.vertical-line, .logo-line {
+    background-color: white;
+    width: 28vw;
+}
+
+.vertical-line {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    position: relative;
+    left: 17vw;
+    top: 17vh;
+}
+
+.login-button {
+    border: 1px solid white;
+    color: white;
+    padding: 1.5vh 12vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.9vw;
+    border-radius: 8px;
+    max-width: 30vw;
+    margin-top: 7vh;
+}
+
+.login-button {
+    color: white;
+}
+
+
+.login-button:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.login-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.login-button:hover {
+    color: black;
+    background: white;
+}
+
+
+.left-circles, .middle-circles, .right-circles {
+    display: inline-block;
+}
+.top-circle, .bottom-circle {
+    position: relative;
+    width: 2.5vw;
+    height: 2.5vw;
+    background: white;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 0px 1px white;
+    /* transition: left 10s; */
+}
+
+.top-circle, .bottom-circle {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.login-title h2 {
+    font-size: 5vw;
+}
+
+@media (max-width: 575px) {
+
+    .left-circles, .middle-circles, .right-circles {
+        transform: rotate(-90deg);
+    }
+
+    .top-circle, .bottom-circle {
+        margin-right: 10px;
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+    }
+
+    .vertical-line, .logo-line {
+        width: 35vw;
+    }
+
+    .vertical-line {
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+        transform: rotate(0deg);
+        left: 0vw;
+        top: 0vh;
+    }
+
+    .logo-line {
+        position: relative;
+        left: 0vw;
+    }
+    .login-title {
+        left: 125px
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 1.5vh 10vw;
+        margin-top: 1vh;
+    }
+}
+
+
 
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/

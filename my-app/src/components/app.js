@@ -33,15 +33,8 @@ class App extends Component {
   }
   
   render() {
-    if (!this.props.auth) {
-      return (
-        <div className='container login'>
-          <div className='row'>
-            <Login/>
-          </div>
-        </div>
-      )
-    }
+    if (!this.props.auth) 
+      return <Login/>
 
     return (
         <div>

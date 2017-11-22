@@ -21,8 +21,37 @@ class Signup extends Component {
     
     render() {
         return (
-            <div className='col-12 login'>
-                <a href='/signin/facebook' className='btn btn-outline-primary'>Signup/Login</a>
+            <div className='login-container'>
+                <div className='row text-center'>
+                    <div className='col-xs-12 col-sm-5 left-logo'>
+                            <hr className='vertical-line'/>
+                            <div className='left-circles'>
+                                <div className='top-circle'></div>
+                                <div className='bottom-circle'></div>
+                                
+                            </div>
+                            <div className='middle-circles'>
+                                <div className='top-circle'></div>
+                                <div className='bottom-circle'></div>
+                                
+                            </div>
+                            <div className='right-circles'>
+                                <div className='top-circle'></div> 
+                                <div className='bottom-circle'></div> 
+                            </div>
+                            
+                            <hr className='logo-line'/>
+                            <div className='login-title'><h2>My Grade Table</h2></div> 
+                    </div>
+                    <div className='col-xs-12 col-sm-6 login-buttons'>
+                        <div>
+                            <a className='login-button' href='/signin/facebook' >Login</a>
+                        </div>
+                        <div>
+                            <a className='login-button' href='/signin/facebook'>Signup</a>                        
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
