@@ -11,9 +11,6 @@ const app = express();
 
 require('./services/passport');
 
-// app.use('/', express.static(__dirname + '/public'))
-// app.use('/assets', express.static(__dirname + '/public'))
-
 app.use('/', express.static(path.resolve(__dirname, '..', 'my-app', 'build')));
 
 app.use('/', getRoute);
@@ -34,8 +31,4 @@ app.get('*', function(req, res) {
     res.sendFile(path.resolve(__dirname, '..', 'my-app', 'build', 'index.html'));
 })
 
-// app.get('/', function(req, res) {
-//     res.end();
-// })
-
-app.listen(4001, () => console.log('listening on port 4000'));
+app.listen(4001, () => console.log('listening on port 4001'));

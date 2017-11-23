@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
  * @function 
  * @param {Object} req client request object for creation of a new student record
  * @param {Object} res server response object with message
- * @returns {Object} message for client to display for user with status of create record
+ * @returns {Object} message for client to display for user with status of create student record
  */
 router.post('/add', (req, res) => {
     const resp = {

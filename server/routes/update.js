@@ -58,8 +58,6 @@ router.put('/', (req, res) => {
                 .spread( (history, created) => {
                     res.status(200).send({msg: history.transaction})
                 })
-            }).catch(err => {
-                console.log(err)
             })
     }
     if(req.body.type === 'assignment') {
@@ -78,8 +76,6 @@ router.put('/', (req, res) => {
                 .spread( (history, created) => {
                     res.status(200).send({msg: history.transaction})
                 })
-            }).catch(err => {
-                console.log(err)
             })
     }
     if(req.body.type === 'grade') {
@@ -118,8 +114,6 @@ router.put('/', (req, res) => {
                     })
 
                 })
-            }).catch(err => {
-                console.log(err)
             })
     }
 })
