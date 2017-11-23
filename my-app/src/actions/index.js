@@ -41,6 +41,7 @@ export function sign_in() {
 export function sign_out() {
     return dispatch => {
         axios.get('/api/signout').then( res => {
+            debugger
             dispatch({
                 type: types.AUTH,
                 payload: res.data

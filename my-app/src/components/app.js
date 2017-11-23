@@ -33,6 +33,7 @@ class App extends Component {
   }
   
   render() {
+    debugger
     if (!this.props.auth) 
       return <Login/>
 

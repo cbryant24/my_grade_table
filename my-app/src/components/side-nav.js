@@ -24,9 +24,11 @@ class Side_Nav extends Component {
     /**
      * @function handle_logout
      * @returns invokes the action creator sign_out that 
-     * updates the redux state auth and signs user out
+     * updates the redux state auth and signs user out of the app
      */
     handle_logout() {
+        debugger
+        this.setState({back_drop_hide: false, nav_in: false})
         this.props.sign_out()
     }
     /**
@@ -90,7 +92,7 @@ class Side_Nav extends Component {
                             <Link onClick={ ()=> this.close_nav()} to='/my-grades' className=''>Grades</Link>
                         </li>
                         <li className='side-nav-item'>
-                            <Link onClick={ ()=> this.handle_logout} to='/' className=''>Logout</Link>
+                            <Link onClick={ ()=> this.handle_logout()} to='/' className=''>Logout</Link>
                         </li>
                         
                     </ul>
