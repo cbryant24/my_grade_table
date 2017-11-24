@@ -176,7 +176,6 @@ body {
     -webkit-border-radius: 50px;
     border-radius: 50px;
     box-shadow: 0px 0px 0px 1px white;
-    /* transition: left 10s; */
 }
 
 .top-circle, .bottom-circle {
@@ -192,6 +191,8 @@ body {
 
     .left-circles, .middle-circles, .right-circles {
         transform: rotate(-90deg);
+        -ms-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
     }
 
     .top-circle, .bottom-circle {
@@ -589,11 +590,15 @@ td {
     }
     
     .side-trans {
-        transform: translateX(64vw)
+        transform: translateX(64vw);
+        -webkit-transform: translateX(64vw);
+        -ms-transform: translateX(64vw);
     }
     
     .side-trans-out {
-        transform: translateX(100vw)
+        transform: translateX(100vw);
+        -webkit-transform: translateX(11vw);
+        -ms-transform: translateX(100vw);
     }
     
     .close-icon:hover {
@@ -688,21 +693,26 @@ td {
 }
 
 .modal-trans-enter {
-    transform: translateY(-120%)
+    transform: translateY(-120%);
     }
     
 .modal-trans-enter.modal-trans-enter-active {
 transform: translateY(0%);
 transition: transform 300ms ease-in;
+-webkit-transition: transform 300ms ease-in;
+
 }
 
 .modal-trans-exit {
 transform: translateY(120%);
+-webkit-transform: translateY(120%);
 }
 
 .modal-trans-exit.modal-trans-exit-active {
 transform: translateY(-120%);
+-webkit-transform: translateY(-120%);
 transition: transform 300ms ease-in;
+-webkit-transition: 300ms ease-in;
 }
 
 .close-icon:hover {
