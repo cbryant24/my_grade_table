@@ -164,7 +164,7 @@ class Modal extends Component {
             if(modal.status === 'add') {
                 this.props.open_close_modal({open: false})
                 axios.post('/api/students/add', {vals: modal.data, fb_id: this.props.auth.fb_id }).then( res => {
-                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Added'})
+                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Student Added'})
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_students(this.props.auth.fb_id)  
                     modal.reset()
@@ -176,7 +176,7 @@ class Modal extends Component {
                 axios.put('/api/update',modal.data).then( res => {
                     this.props.get_activity(this.props.auth.fb_id)
                     this.props.get_students(this.props.auth.fb_id)  
-                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Course Updated'})                    
+                    this.props.open_close_modal({open: true, type:'message', message: res.data.msg, title: 'Student Updated'})                    
                     modal.reset()
                     this.props.update_selection({})
                 })
