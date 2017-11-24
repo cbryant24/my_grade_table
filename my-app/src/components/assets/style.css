@@ -597,7 +597,7 @@ td {
     
     .side-trans-out {
         transform: translateX(100vw);
-        -webkit-transform: translateX(11vw);
+        -webkit-transform: translateX(100vw);
         -ms-transform: translateX(100vw);
     }
     
