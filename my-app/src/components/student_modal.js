@@ -44,13 +44,14 @@ class Modal extends Component {
      *  by retrieving name associated with assignment id, course id, or student id
      */
     componentWillReceiveProps(nextProps) {
+        debugger
         if(nextProps.modal.table === 'grade') {
             axios.post('/api/grades/get-info', {...nextProps.modal.data}).then( grade =>{
                 this.setState({ grade: grade.data})
             })
         }
         if(nextProps.modal.table === 'assignment') {
-            axios.post('/api/courses/get-info', {data: nextProps.modal.data.course_id} ).then( course =>{
+            axios.post('/api/courses/get-info', {data: nextProps.modal.data.course_id || nextProps.modal.data.course } ).then( course =>{
                 this.setState({ course: course.data})
             })
         }

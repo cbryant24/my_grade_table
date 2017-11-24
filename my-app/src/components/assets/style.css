@@ -581,7 +581,7 @@ td {
     #side-nav  {
         position: fixed;
         height: 100vh;
-        width: 25vw;
+        width: 36vw;
         background: rgba(0, 0, 0, 1.0);
         -webkit-transition-duration: 600ms;
         transition-duration: 600ms;
@@ -589,7 +589,7 @@ td {
     }
     
     .side-trans {
-        transform: translateX(75vw)
+        transform: translateX(64vw)
     }
     
     .side-trans-out {
@@ -601,26 +601,10 @@ td {
         cursor: hand;
     }
     
-    /* #side-nav {
-      background: rgba(0, 0, 0, 0.9);
-      padding-top: 2vh;
-      padding-bottom: 2vh;
-      z-index: 5
-    } */
-    
-    /* #mainNav .navbar-brand {
-    color: #fdcc52;
-    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-    font-weight: 200;
-    letter-spacing: 1px; 
-    color: fade(white, 70%);
-    } */
-    
     #side-menu > li > a{
     font-size: 11px;
     font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
     letter-spacing: 2px;
-    /* margin: 10px 0px; */
     text-transform: uppercase; 
     color: rgba(255, 255, 255, 0.7); 
     }
@@ -650,17 +634,16 @@ td {
       right: 10px;
       z-index: 2;
     }
+
+    .hide {
+        display: none;
+    }
     
     @media (min-width: 577px) {
       .side-menu-conatianer {
         display: none;
       }
     }
-
-    .hide {
-        display: none;
-    }
-
 
 /*|_______________________________________________________________________________________________|*/
 /*|_______________________________________________________________________________________________|*/
@@ -687,7 +670,7 @@ td {
     display: none;
 }
 
-.modal-closed  {
+.modal-closed, .modal-open  {
     position: fixed;
     top: -65%;
     left: 25%;
@@ -697,18 +680,11 @@ td {
     z-index: 7;
     color: black;
     overflow: scroll;
+    border-radius: 15px;
 }
 
 .modal-open  {
-    position: fixed;
     top: 16%;
-    left: 25%;
-    background-color: white;
-    height: 40%;
-    width: 35%;
-    z-index: 7;
-    color: black;
-    overflow: scroll;
 }
 
 .modal-trans-enter {
@@ -728,19 +704,6 @@ transform: translateY(120%);
 transform: translateY(-120%);
 transition: transform 300ms ease-in;
 }
-
-/* .modal-trans {
-    transform: translateY(150%)
-}
-
-.modal-trans-out {
-    transform: translateY(-150%)
-}
-
-.stop-scroll {
-    overflow: hidden
-} */
-
 
 .close-icon:hover {
     cursor: pointer; 
@@ -790,10 +753,17 @@ transition: transform 300ms ease-in;
     width: 100%
 }
 
-@media (min-width: 577px) {
-    .side-menu-conatianer {
-      display: none;
-    }
-  }
+.modal-data button {
+    margin: 1vh;
+}
 
+@media (max-width: 577px) {
+    .modal-open, .modal-close {
+        width: 60%;
+    }
+
+    .form-bttn {
+        margin-left: 1vh;
+    }
+}
 

@@ -67,8 +67,10 @@ router.post('/add', (req, res) => {
  * @returns {Object} with single database course record client requested
  */
 router.post('/get-info', (req, res) => {
+    console.log('this is the req object from get info', req.body)    
     Courses.
     findById(req.body.data).then( course => {
+        console.log('this is the course object from get infog', course)
         res.status(200).send(course)
       })
 })

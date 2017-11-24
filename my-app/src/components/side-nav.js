@@ -27,7 +27,6 @@ class Side_Nav extends Component {
      * updates the redux state auth and signs user out of the app
      */
     handle_logout() {
-        debugger
         this.setState({back_drop_hide: false, nav_in: false})
         this.props.sign_out()
     }

@@ -50,7 +50,7 @@ export const validate = (vals, location) => {
     vals.errors = {}
     let errors = false
     /**regex to verify user is only entering allowed characters */
-    const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@'-, ]+$/);
+    const alpha_numeric = new RegExp(/^[0-9a-zA-Z!#@'\-, ]+$/);
     const numeric = new RegExp(/^\d+$/);
     if ((!vals.first_name || !vals.last_name || !vals.student_id) && location === '/my-students') {
         vals.errors.student = 'Enter a Student Name and ID'

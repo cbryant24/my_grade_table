@@ -107,6 +107,7 @@ class App_Form extends Component {
      *  for database posting
      */
     form_submit(vals) {
+        debugger
         /**
          * normalizing vals object from update object with appropriate property names and values
          */
