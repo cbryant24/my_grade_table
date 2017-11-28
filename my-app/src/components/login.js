@@ -41,7 +41,7 @@ class Signup extends Component {
                             </div>
                             
                             <hr className='logo-line'/>
-                            <div className='login-title'><h3>My Grade Table</h3></div> 
+                            <div className='login-title'><h3>My Students Grade</h3></div> 
                     </div>
                     <div className='col-xs-12 col-sm-6 login-buttons'>
                         <div>
