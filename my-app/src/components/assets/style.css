@@ -344,7 +344,7 @@ table {
 
 th {
     padding: 17px 6px;
-    text-align: center;
+    text-align: left;
     font-weight: 1000;
     font-size: 13px;
     text-transform: uppercase;
@@ -362,7 +362,7 @@ td {
     border-bottom: solid 1px rgba(255,255,255,0.3);
 }
 
-.tbl-content{
+.tbl-content {
     max-height: 26.5vh;
     overflow-x:auto;
     margin-top: 0px;
@@ -371,12 +371,21 @@ td {
     margin: auto;
   }
 
+.tbl-data {
+    margin-left: 30px;
+}
 
   @media (max-width: 576px) {
     .tbl-content, .tbl-header {
         max-width: 100vw;
     }
 
+  }
+
+  @media (min-width: 830px) {
+    table {
+        table-layout: fixed;
+    }
   }
 
 /*|_______________________________________________________________________________________________|*/

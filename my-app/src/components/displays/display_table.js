@@ -65,7 +65,7 @@ class Display_Table extends Component {
                         </table>
                     </div>
                     <div className='tbl-content'>
-                        <table>
+                        <table className='tbl-data'>
                             <tbody>
                                 <Render_Table fb_id={this.props.auth.fb_id} list={true} vals={students} />
                             </tbody>
@@ -88,7 +88,7 @@ class Display_Table extends Component {
                         </table>
                     </div>
                     <div className='tbl-content'>
-                        <table>
+                        <table className='tbl-data'>
                             <tbody>
                                 <Render_Table fb_id={this.props.auth.fb_id} list={true} vals={grades} />
                             </tbody>
@@ -111,7 +111,7 @@ class Display_Table extends Component {
                         </table>
                     </div>
                     <div className='tbl-content'>
-                        <table>
+                        <table className='tbl-data'>
                             <tbody>
                                 <Render_Table fb_id={this.props.auth.fb_id} list={true} vals={courses} />
                             </tbody>
@@ -134,7 +134,7 @@ class Display_Table extends Component {
                         </table>
                     </div>
                     <div className='tbl-content'>
-                        <table>
+                        <table className='tbl-data'>
                             <tbody>
                                 <Render_Table fb_id={this.props.auth.fb_id} list={true} vals={table_assignments} />
                             </tbody>
@@ -156,7 +156,7 @@ class Display_Table extends Component {
                     </table>
                 </div>
                 <div className='tbl-content'>
-                    <table>
+                    <table className='tbl-data'>
                         <tbody>
                             <Render_Table fb_id={this.props.auth.fb_id} list={true} vals={{...grades, type: 'home'}} />
                         </tbody>
