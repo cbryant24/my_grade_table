@@ -54,7 +54,7 @@ class Display_Table extends Component {
         if(this.props.location.pathname === '/my-students') {
             return (
                 <div>
-                    <div>
+                    <div className='table-name'>
                         <h4>Your Students</h4>
                     </div>
                     <div className='row tbl-header'>
@@ -77,7 +77,7 @@ class Display_Table extends Component {
         if(this.props.location.pathname === '/my-grades') {
             return (
                 <div>
-                    <div>
+                    <div className='table-name'>
                         <h4>Grades</h4>
                     </div>
                     <div className='row tbl-header'>
@@ -100,7 +100,7 @@ class Display_Table extends Component {
         if(this.props.location.pathname === '/my-courses') {
             return (
                 <div>
-                    <div>
+                    <div className='table-name'>
                         <h4>Courses</h4>
                     </div>
                     <div className='row tbl-header'>
@@ -123,7 +123,7 @@ class Display_Table extends Component {
         if(this.props.location.pathname === '/my-assignments') {
             return (
                 <div>
-                    <div>
+                    <div className='table-name'>
                         <h4>Courses</h4>
                     </div>
                     <div className='row tbl-header'>
@@ -145,7 +145,7 @@ class Display_Table extends Component {
         }
         return (
             <div>
-                <div>
+                <div className='table-name'>
                     <h4>Your Students</h4>
                 </div>
                 <div className='row tbl-header'>

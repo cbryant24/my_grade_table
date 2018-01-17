@@ -380,6 +380,10 @@ td {
         max-width: 100vw;
     }
 
+    .table-name {
+        margin: 5% 0%;
+    }
+
   }
 
   @media (min-width: 830px) {
