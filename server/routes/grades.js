@@ -13,10 +13,7 @@ router.use(bodyParser.json());
 
 
 /**
- * @function 
- * @param {Object} req client request object for creation of a user grade record
- * @param {Object} res server response object with message
- * @returns {Object} message for client to display for user with status of create record
+ * returns {Object} message for client to display for user with status of created record
  */
 router.post('/add', (req, res) => {
     Grades
@@ -46,10 +43,8 @@ router.post('/add', (req, res) => {
 })
 
 /**
- * @function 
- * @param {Object} req client request object for data from the database grades table 
- * @param {Object} res server response object with associated user from grades database table
- * @returns {Object} data from the grades table that are associated with user request
+ * returns {Object} data from the grades table that are associated with user request
+ * for use in the route /grades
  */
 router.post('/', (req, res) => {
     const get_grades = require('./sql_queries').get_grades(req.body.fb_id) 
@@ -63,10 +58,7 @@ router.post('/', (req, res) => {
 })
 
 /**
- * @function 
- * @param {Object} req client request object for data from the database grades table 
- * @param {Object} res server response object with message 
- * @returns {Object} data from the grades table to confirm update, delete, creation of grade record
+ * returns {Object} data from the grades table to confirm update, delete, creation of grade record
  */
 router.post('/get-info', (req, res) => {
     /**
@@ -78,7 +70,9 @@ router.post('/get-info', (req, res) => {
         req.body.assignment_id = req.body.assignment_id.id
     if(typeof req.body.course_id === 'object') 
         req.body.course_id = req.body.course_id.id
+
     let grade_activity = require('./sql_queries').grade_statement(req.body.student_id || req.body.student, req.body.course_id || req.body.course, req.body.assignment_id || req.body.assignment)
+
     sequelize.query(
         grade_activity,
         { type: sequelize.QueryTypes.SELECT}

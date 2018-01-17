@@ -17,11 +17,9 @@ const router = express.Router();
 router.use(bodyParser.json())
 
 /**
- * @function 
- * @param {Object} req client request object for update of database record 
- * @param {Object} res server response object with confirmation or error of update
- * @returns {Object} message with status for client update request of database record,
+ * returns {Object} message with status for client update request of database record,
  * update of request from database table dependent on request update object type
+ * for use on the /students, /courses, /assignments, /grades
  */
 router.put('/', (req, res) => {
     if(req.body.type === 'course') {

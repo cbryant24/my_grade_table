@@ -13,10 +13,8 @@ router.use(bodyParser.json())
 
 
 /**
- * @function 
- * @param {Object} req client request object for data from the database students table 
- * @param {Object} res server response object with associated user students from database students table
- * @returns {Array} of data objects from the courses table that are associated with user requester
+ * returns {Array} of student objects from the students table that are associated with user requester
+ * for use on the route /grades 
  */
 router.post('/', (req, res) => {
     Students
@@ -33,10 +31,8 @@ router.post('/', (req, res) => {
 });
 
 /**
- * @function 
- * @param {Object} req client request object for creation of a new student record
- * @param {Object} res server response object with message
- * @returns {Object} message for client to display for user with status of create student record
+ * returns {Object} message for client to display for user with status of created student record
+ * for use on the route /students 
  */
 router.post('/add', (req, res) => {
     const resp = {

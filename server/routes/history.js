@@ -10,12 +10,9 @@ let User_History = models.history;
 router.use(bodyParser.json());
 
 /**
- * @function 
- * @param {Object} req client request object for data from the history table 
- * @param {Object} res server response object with requested data 
- * @returns {Array}  of data objects from the history table of users history for activity feed
+ * returns {Array}  of data objects from the history table of users history for activity feed
  */
-
+debugger
 router.post('/', (req, res) => {
     User_History
     .findAll({

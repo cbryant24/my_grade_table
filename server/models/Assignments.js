@@ -1,10 +1,7 @@
 /**@module assignments_table */
 
 /**
- * @function 
- * @param {object} sequelize 
- * @param {object} DataTypes 
- * @returns model of assignment sql database table using npm library sequelize
+ * model of assignment sql database table using library sequelize
  */
 
 module.exports = (sequelize, dataTypes) => {

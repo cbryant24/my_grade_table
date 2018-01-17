@@ -13,10 +13,8 @@ let User_History = models.history
 router.use(bodyParser.json());
 
 /**
- * @function 
- * @param {Object} req client request object for data from the database courses table 
- * @param {Object} res server response object with associated user courses from database courses table
- * @returns {Array} of data objects from the courses table that are associated with user requester
+ * returns {Array} of course objects from the courses table that are associated with user requester
+ * used for /assignments, /courses, /grades
  */
 
 router.post('/', (req, res) => {
@@ -58,6 +56,7 @@ router.post('/add', (req, res) => {
         })
     })
 })
+debugger
 
 
 /**
@@ -72,5 +71,6 @@ router.post('/get-info', (req, res) => {
         res.status(200).send(course)
       })
 })
+
 
 module.exports = router;

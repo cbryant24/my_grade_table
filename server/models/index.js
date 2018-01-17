@@ -19,7 +19,7 @@ const sequelize = new Sequelize(my_creds.database, my_creds.user, my_creds.passw
 
 /**
  * @type {object} 
- * object that will hold all instanses of the database tables and connection
+ * object that will hold all instances of the database tables and connection
  */
 const grade_tbs = {};
 

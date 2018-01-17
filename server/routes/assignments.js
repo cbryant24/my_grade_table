@@ -14,10 +14,8 @@ const sequelize = models.sequelize;
 router.use(bodyParser.json());
 
 /**
- * @function 
- * @param {Object} req client request object for data from the database assignments table 
- * @param {Object} res server response object with associated user assignments from database assignments table
- * @returns {Array} of data objects from the assignments table that are associated with user requester
+ * returns {Array} of data objects from the assignments table that are associated with user requester
+ * for route /assignments, /grades
  */
 router.post('/', (req, res) => {
     Assignments
@@ -34,10 +32,8 @@ router.post('/', (req, res) => {
 })
 
 /**
- * @function 
- * @param {Object} req client request object to post data to the database assignments table 
- * @param {Object} res server response object with joined assignment and courses table data
- * @returns {Array} of data objects for client to display in the tables_assignment component
+ * returns {Array} of assignment objects for client to display in the tables_assignment component 
+ * for route /assignments, /grades
  */
 
 router.post('/all', (req, res) => {
@@ -52,10 +48,8 @@ router.post('/all', (req, res) => {
 })
 
 /**
- * @function 
- * @param {Object} req client request object to post data to the database assignments table 
- * @param {Object} res server response object with response message for user
- * @returns {Object} with response for client to display for user modal
+ * returns {Object} with response message for client to display for user modal in creation of assignment
+ * for use in the route /assignments
  */
 router.post('/add', (req, res) => {
     Assignments

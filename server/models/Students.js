@@ -1,10 +1,7 @@
 /**@module students */
 
 /**
- * @function 
- * @param {object} sequelize 
- * @param {object} DataTypes 
- * @returns model of students sql database table using npm library sequelize
+ * model of students sql database table using npm library sequelize
  */
 
 module.exports = (sequelize, DataTypes) => {

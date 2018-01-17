@@ -1,10 +1,7 @@
 /**@module grades_table */
 
 /**
- * @function 
- * @param {object} sequelize 
- * @param {object} DataTypes 
- * @returns model of grades sql database table using npm library sequelize
+ * model of grades sql database table using library sequelize
  */
 
 module.exports = (sequelize, DataTypes) => {

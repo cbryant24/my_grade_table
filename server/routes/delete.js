@@ -13,11 +13,9 @@ let Courses = models.courses;
 const router = express.Router();
 
 /**
- * @function 
- * @param {Object} req client request object for deletion of database record 
- * @param {Object} res server response object with confirmation or error
- * @returns {Object} message with status for client deletion request from database,
+ * returns {Object} message with status for client deletion request from database,
  * deletion of request from database table dependent on request deletion object type
+ * for use on the route /students, /assignments, /courses, /grades
  */
 router.use(bodyParser.json())
 router.post('/', (req, res) => {
